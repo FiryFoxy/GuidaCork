@@ -1,0 +1,110 @@
+[
+  {
+    "id": "night-sine",
+    "category": "nightlife",
+    "title": "Sin É",
+    "desc": "Pub storico dall'atmosfera estremamente rilassata. Concerti improvvisati e ballate popolari irlandesi quasi ogni giorno, con brani sconosciuti suonati da musicisti tradizionali locali.",
+    "icon": "🎻",
+    "highlight": "Trad Session",
+    "url": "https://www.facebook.com/SinECork/"
+  },
+  {
+    "id": "night-franwell",
+    "category": "nightlife",
+    "title": "Franciscan Well Brewery",
+    "desc": "Celebre birrificio artigianale sul sito di un antico monastero del 1219. Beer garden, birre pluripremiate e pizze cotte a legna.",
+    "icon": "🍺",
+    "highlight": "Birra Artigianale & Pizza",
+    "url": "https://franwellbar.com/"
+  },
+  {
+    "id": "night-shelbourne",
+    "category": "nightlife",
+    "title": "The Shelbourne Bar",
+    "desc": "Il top nel Victorian Quarter per gli amanti del whiskey irlandese. Personale preparato che ti guida tra i migliori distillati locali.",
+    "icon": "🥃",
+    "highlight": "Irish Whiskey",
+    "url": "https://theshelbournebar.ie/"
+  },
+  {
+    "id": "night-crane",
+    "category": "nightlife",
+    "title": "Crane Lane Theatre",
+    "desc": "Ex club per gentiluomini oggi adibito a grandissimo spazio eventi. DJ set, concerti rock, blues, jazz e spettacoli fino a notte fonda.",
+    "icon": "🪩",
+    "highlight": "Musica Live & Clubbing",
+    "url": "https://www.cranelanetheatre.ie/"
+  },
+  {
+    "id": "night-oliver",
+    "category": "nightlife",
+    "title": "The Oliver Plunkett",
+    "desc": "Pub su più piani, ideale per studenti. Balli tradizionali irlandesi e musica live quasi a ciclo continuo.",
+    "icon": "🕺",
+    "highlight": "Irish Dance Show",
+    "url": "https://theoliverplunkett.com/"
+  },
+  {
+    "id": "night-mutton",
+    "category": "nightlife",
+    "title": "The Mutton Lane Inn",
+    "desc": "Uno dei pub più suggestivi e antichi di Cork: pareti scure, candele e caminetto scoppiettante, di fianco all'English Market. Molto frequentato — arriva presto per un tavolo.",
+    "icon": "🕯️",
+    "highlight": "Pub Storico",
+    "url": "https://www.facebook.com/themuttonlaneinn/"
+  },
+  {
+    "id": "night-oval",
+    "category": "nightlife",
+    "title": "The Oval",
+    "desc": "Piccolo pub inalterato dal 1918, luci soffuse e caminetto. Atmosfera d'altri tempi unica.",
+    "icon": "🔥",
+    "highlight": "Caminetto & Intimità",
+    "url": "https://www.facebook.com/TheOvalBarCork/"
+  },
+  {
+    "id": "night-spailpin",
+    "category": "nightlife",
+    "title": "An Spailpín Fánach",
+    "desc": "Pub storico dal carattere vivace, rustico e accogliente. Musica tradizionale irlandese quasi ogni sera; ritrovo prediletto degli studenti nel weekend.",
+    "icon": "🪵",
+    "highlight": "Trad & Studenti",
+    "url": "https://anspailpin.ie/"
+  },
+  {
+    "id": "night-fred",
+    "category": "nightlife",
+    "title": "Fred Zeppelin's",
+    "desc": "Perla per chi ama Rock e Metal, fedele al motto \"Keep on rocking in the free world!\". Serata alternativa con band emergenti.",
+    "icon": "🤘",
+    "highlight": "Rock & Metal",
+    "url": "https://www.facebook.com/FredZeppelins/"
+  },
+  {
+    "id": "night-bodhran",
+    "category": "nightlife",
+    "title": "An Bodhrán",
+    "desc": "Piccolo pub in stile antico, intimo ed elegante. Ottima musica dal vivo per cinque sere a settimana nel centro cittadino.",
+    "icon": "🥁",
+    "highlight": "Live 5 sere/sett.",
+    "url": "https://www.facebook.com/AnBodhranPub/"
+  },
+  {
+    "id": "night-danlowrey",
+    "category": "nightlife",
+    "title": "Dan Lowrey's",
+    "desc": "Pub raffinato con atmosfera tardo-vittoriana: splendide vetrate istoriate e mobili storici curati nei minimi dettagli.",
+    "icon": "🪟",
+    "highlight": "Vittoriano",
+    "url": "https://danlowreys.ie/"
+  },
+  {
+    "id": "night-coughlan",
+    "category": "nightlife",
+    "title": "Coughlan's Live Venue",
+    "desc": "Locale polivalente con concerti indie, folk e jam session in un ambiente intimo nel quartiere di Douglas Street.",
+    "icon": "🎸",
+    "highlight": "Live Indie & Folk",
+    "url": "https://coughlanslive.com/"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "food-farmgate",
+    "category": "food",
+    "title": "The Farmgate Café",
+    "desc": "Punto di ritrovo amatissimo sulla galleria superiore dell'English Market. Piatti tradizionali a base di pesce fresco, pollame e formaggi artigianali irlandesi dal mercato sottostante.",
+    "icon": "🐟",
+    "note": "Sopra English Market",
+    "hours": "Mar-Sab colazione 09:00–11:30 · pranzo 12:00–15:30",
+    "url": "https://farmgatecork.ie/"
+  },
+  {
+    "id": "food-quaycoop",
+    "category": "food",
+    "title": "Upstairs at the Co-Op (Quay Co-Op)",
+    "desc": "Istituzione alternativa di Cork dal 1982. Ristorante vegetariano con zuppe, lasagne, pizze e insalate bio; al piano terra panificio bio e negozio di alimentari.",
+    "icon": "🥗",
+    "note": "Vegetariano bio",
+    "hours": "Lun-Sab 08:30–17:00",
+    "url": "https://quaycoop.com/"
+  },
+  {
+    "id": "food-jacobs",
+    "category": "food",
+    "title": "Jacobs on the Mall",
+    "desc": "Design moderno in un antico edificio (ex bagno turco). Cucina contemporanea che unisce ingredienti irlandesi e sapori internazionali. Il butterscotch pudding è considerato il miglior dessert della città.",
+    "icon": "🍮",
+    "note": "Contemporaneo",
+    "hours": "Mar-Sab 17:00–22:00",
+    "url": "https://jacobsonthemall.com/"
+  },
+  {
+    "id": "food-jacques",
+    "category": "food",
+    "title": "Jacques Restaurant",
+    "desc": "Pilastro della ristorazione di Cork da oltre quarant'anni. Piatti freschi di ispirazione mediterranea con forte legame col territorio. Consigliata la prenotazione e il menu degustazione da tre portate.",
+    "icon": "🍷",
+    "note": "Mediterraneo",
+    "hours": "Mar-Sab 17:00–23:00",
+    "url": "https://jacquesrestaurant.ie/"
+  },
+  {
+    "id": "food-scoozis",
+    "category": "food",
+    "title": "Scoozi's",
+    "desc": "Locale informale e accogliente a misura di famiglia, perfetto per sapori di casa. Pizza, lasagne e pasta a prezzi contenuti.",
+    "icon": "🍕",
+    "note": "Italiano",
+    "hours": "Lun-Gio 10:00–20:00 · Ven 10:00–21:00 · Sab 09:00–21:00 · Dom 12:00–20:00",
+    "url": "https://scoozis.ie/"
+  },
+  {
+    "id": "food-paradiso",
+    "category": "food",
+    "title": "Paradiso",
+    "desc": "Ristorante di alta cucina vegetariana del pluripremiato chef Denis Cotter. Creatività straordinaria con verdure locali; il libro di cucina dello chef è un ottimo souvenir.",
+    "icon": "🌱",
+    "note": "Vegetariano gourmet",
+    "hours": "Mar-Sab 17:00–22:00",
+    "url": "https://paradiso.restaurant/"
+  },
+  {
+    "id": "food-fourliars",
+    "category": "food",
+    "title": "Four Liars Restaurant",
+    "desc": "Nato come bistrot, gestito da una cordiale famiglia siriana. Cucina mediorientale rinomata in città per hummus e kebab eccellenti.",
+    "icon": "🥙",
+    "note": "Mediorientale",
+    "hours": "Lun-Sab 12:00–22:00 · Dom 16:00–20:00",
+    "url": "https://fourliars.ie/"
+  },
+  {
+    "id": "food-greenes",
+    "category": "food",
+    "title": "Greenes Restaurant",
+    "desc": "Elegante ristorante di lusso in un vecchio magazzino con corte interna e cascata. Per risparmiare: Early Bird 18:00–19:00 (capesante, agnello e dessert).",
+    "icon": "✨",
+    "note": "Fine dining",
+    "hours": "Mar-Ven 16:00–21:30 · Sab 15:00–22:00",
+    "url": "https://greenesrestaurant.com/"
+  }
+]

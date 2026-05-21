@@ -1,0 +1,93 @@
+[
+  {
+    "id": "culture-butter",
+    "category": "culture",
+    "title": "The Butter Museum",
+    "desc": "Un museo insolito e curioso dedicato alla storia del burro irlandese, che un tempo rendeva Cork uno dei mozzi commerciali più ricchi dell'Impero. Un vero tuffo nell'archeologia industriale locale.",
+    "icon": "🧈",
+    "location": "Shandon",
+    "url": "https://thebuttermuseum.com/"
+  },
+  {
+    "id": "culture-gaol",
+    "category": "culture",
+    "title": "Cork City Gaol",
+    "desc": "Suggestiva ex prigione ottocentesca che da fuori sembra un castello. Museo tra celle strette e corridoi silenziosi, con rumori ricreati di porte che cigolano e passi per immedesimarsi nella vita dei detenuti storici e dei prigionieri politici.",
+    "icon": "🗝️",
+    "location": "Sunday's Well",
+    "hours": "Mar-Ott 10:00–17:00 · Nov-Feb 10:00–16:00 (~1h)",
+    "url": "https://corkcitygaol.com/"
+  },
+  {
+    "id": "culture-glucksman",
+    "category": "culture",
+    "title": "Glucksman Gallery",
+    "desc": "Situata nello spettacolare campus alberato dell'UCC (University College Cork). Questo pluripremiato museo d'arte contemporanea organizza esposizioni temporanee d'avanguardia ed eventi culturali gratuiti.",
+    "icon": "🎨",
+    "location": "UCC Campus",
+    "url": "https://www.glucksman.org/"
+  },
+  {
+    "id": "culture-nano",
+    "category": "culture",
+    "title": "Nano Nagle Place",
+    "desc": "Un convento settecentesco splendidamente restaurato che oggi ospita un museo interattivo sulla vita di Nano Nagle, giardini interni nascosti e silenziosi, un bar biologico e un fantastico bookshop.",
+    "icon": "🌿",
+    "location": "Douglas St.",
+    "url": "https://nanonagleplace.ie/"
+  },
+  {
+    "id": "culture-elizabeth",
+    "category": "culture",
+    "title": "Elizabeth Fort",
+    "desc": "Forte a stella del XVII secolo situato appena fuori dal centro storico. Offre una panoramica spettacolare sui tetti di Cork e ricostruzioni storiche molto dettagliate sulla storia militare della città.",
+    "icon": "🏰",
+    "location": "Barrack St.",
+    "url": "https://www.corkcity.ie/en/elizabeth-fort/"
+  },
+  {
+    "id": "culture-cathedral",
+    "category": "culture",
+    "title": "St. Fin Barre's Cathedral",
+    "desc": "Una maestosa cattedrale neogotica trifogliata in pietra calcarea locale. I suoi interni sono ricchi di mosaici, vetrate colorate spettacolari e un celebre angelo dorato che la leggenda dice suonerà la tromba alla fine del mondo.",
+    "icon": "⛪",
+    "location": "Bishop St.",
+    "url": "https://cork.anglican.org/cathedrals/st-fin-barres-cathedral/"
+  },
+  {
+    "id": "culture-triskel",
+    "category": "culture",
+    "title": "Triskel Arts Centre",
+    "desc": "Centro culturale multidisciplinare in un'antica chiesa sconsacrata (Christchurch). Programmazione di cinema, musica classica, jazz, folk, teatro amatoriale e mostre d'arte.",
+    "icon": "🎻",
+    "location": "Tobin St.",
+    "url": "https://triskelartscentre.ie/"
+  },
+  {
+    "id": "culture-opera",
+    "category": "culture",
+    "title": "Cork Opera House",
+    "desc": "Vivace polo culturale nel cuore della città: opera lirica, balletto, musical, teatro drammatico, cabaret e sketch comici per tutte le età.",
+    "icon": "🎭",
+    "location": "Emmet Place",
+    "url": "https://corkoperahouse.ie/"
+  },
+  {
+    "id": "culture-everyman",
+    "category": "culture",
+    "title": "Everyman Palace Theatre",
+    "desc": "Teatro storico ed elegante, riferimento per recitazione classica e d'avanguardia. Laboratori shakespeariani e, a fine ottobre, palco del Guinness Jazz Festival.",
+    "icon": "🎪",
+    "location": "MacCurtain St.",
+    "url": "https://everymancork.com/"
+  },
+  {
+    "id": "culture-crawford",
+    "category": "culture",
+    "title": "Crawford Art Gallery",
+    "desc": "Galleria municipale gratuita con collezione permanente di arte irlandese e europea, sculture e mostre temporanee nel cuore del centro.",
+    "icon": "🖼️",
+    "location": "Emmet Place",
+    "url": "https://crawfordartgallery.ie/"
+  }
+]

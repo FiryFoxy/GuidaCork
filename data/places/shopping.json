@@ -1,0 +1,94 @@
+[
+  {
+    "id": "shop-english",
+    "category": "shopping",
+    "title": "English Market",
+    "desc": "Magnifico mercato coperto vittoriano (1788) con archi, fontane e gallerie. Paradiso gastronomico: bio, carni pregiate, pesce fresco e pane artigianale come la brown soda bread.",
+    "icon": "🥐",
+    "note": "Mercato coperto",
+    "hours": "Lun-Sab 08:30–18:00",
+    "url": "https://www.corkcity.ie/en/english-market/"
+  },
+  {
+    "id": "shop-coalquay",
+    "category": "shopping",
+    "title": "Coal Quay Market",
+    "desc": "Tipico mercato di strada di Cork, perfetto per il second-hand: bancarelle all'aperto con vestiti usati, cavoli freschi, libri e vecchi CD.",
+    "icon": "🧺",
+    "note": "Solo sabato",
+    "hours": "Sabato 09:00–14:00",
+    "url": "https://www.corkcity.ie/en/things-to-do/markets/"
+  },
+  {
+    "id": "shop-merchants",
+    "category": "shopping",
+    "title": "Merchant's Quay",
+    "desc": "Grande centro commerciale in un ex deposito sul fiume. Boutique, Dunnes, Penneys/Primark, negozi di musica e caffè-ristorante self-service al primo piano.",
+    "icon": "🏬",
+    "note": "Shopping center",
+    "url": "https://mqsc.ie/"
+  },
+  {
+    "id": "shop-flea",
+    "category": "shopping",
+    "title": "Mother Jones Flea Market",
+    "desc": "Mercato vintage: abbigliamento retrò, libri usati, vinili e oggettistica stravagante.",
+    "icon": "🧥",
+    "note": "Aperto Ven-Sab-Dom",
+    "url": "https://www.facebook.com/MotherJonesFleaMarket/"
+  },
+  {
+    "id": "shop-shandon",
+    "category": "shopping",
+    "title": "Shandon Bells (St Anne's)",
+    "desc": "Sali la torre campanaria di St Anne, suona le campane con spartiti semplificati e goditi la vista a 360° su Cork.",
+    "icon": "🔔",
+    "note": "Vista a 360 gradi",
+    "url": "https://www.stanneshandon.ie/"
+  },
+  {
+    "id": "shop-fitzgerald",
+    "category": "shopping",
+    "title": "Fitzgerald's Park & Shakey Bridge",
+    "desc": "Il polmone verde di Cork, ideale per picnic. Il \"Shakey Bridge\" è l'unico ponte sospeso pedonale d'Irlanda.",
+    "icon": "🌉",
+    "note": "Ingresso Libero",
+    "url": "https://www.corkcity.ie/en/things-to-do/fitzgeralds-park/"
+  },
+  {
+    "id": "shop-vibes",
+    "category": "shopping",
+    "title": "Vibes & Scribes",
+    "desc": "Libreria indipendente con libri usati a pochissimi euro, cartoleria e materiali creativi.",
+    "icon": "📚",
+    "note": "Ottimi prezzi",
+    "url": "https://www.vibesandscribes.ie/"
+  },
+  {
+    "id": "shop-bco",
+    "category": "shopping",
+    "title": "Blackrock Castle Observatory",
+    "desc": "Castello sul Lee trasformato in osservatorio astronomico e centro scientifico interattivo. Raggiungibile con passeggiata lungo il fiume.",
+    "icon": "🔭",
+    "note": "Visite guidate",
+    "url": "https://www.bco.ie/"
+  },
+  {
+    "id": "shop-marina",
+    "category": "shopping",
+    "title": "Marina Market",
+    "desc": "Polo dello street food: decine di stand (coreano, italiano, ecc.) e atmosfera studentesca vibrante.",
+    "icon": "🌮",
+    "note": "Aperto tutti i giorni",
+    "url": "https://www.marinamarket.ie/"
+  },
+  {
+    "id": "shop-bishop",
+    "category": "shopping",
+    "title": "Bishop Lucey Park",
+    "desc": "Piccolo parco urbano nel centro, perfetto per una pausa tra una visita e l'altra. Ingresso gratuito.",
+    "icon": "🌳",
+    "note": "Centro città",
+    "url": "https://www.corkcity.ie/en/things-to-do/parks-outdoors/bishop-lucey-park/"
+  }
+]

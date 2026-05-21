@@ -1,0 +1,92 @@
+[
+  {
+    "id": "trip-cobh",
+    "category": "excursions",
+    "title": "Cobh",
+    "desc": "Villaggio portuale dalle case color pastello. Ultimo scalo del Titanic nel 1912. Titanic Experience e lungomare mozzafiato.",
+    "transport": "Treno da Kent Station",
+    "time": "25 min",
+    "cost": "Gratis con carta / ~6€ A/R",
+    "icon": "⚓",
+    "url": "https://www.visitcobh.com/"
+  },
+  {
+    "id": "trip-kinsale",
+    "category": "excursions",
+    "title": "Kinsale",
+    "desc": "Borgo marinaro famoso per cucina di mare, artigianato e Charles Fort con la Scilly Walk costiera.",
+    "transport": "Bus 226 da Parnell Place",
+    "time": "50 min",
+    "cost": "Gratis con carta / ~8€ A/R",
+    "icon": "⛵",
+    "url": "https://www.discoverireland.ie/cork/kinsale"
+  },
+  {
+    "id": "trip-blarney",
+    "category": "excursions",
+    "title": "Blarney Castle",
+    "desc": "Fortezza medievale del 1446 con boschi magici e Rock Close (antico insediamento druidico). Sali i bastioni (~100 gradini) per baciare la Blarney Stone e ricevere il \"dono dell'eloquenza\". Nel paese, sosta alla Blarney Woollen Mills per maglioni di pura lana.",
+    "transport": "Bus 215 dal centro città",
+    "time": "30 min · ~1h30 visita",
+    "cost": "Gratis con carta + ingresso",
+    "hours": "09:00–17:00 (estate fino 18:00)",
+    "icon": "🏰",
+    "url": "https://www.blarneycastle.ie/"
+  },
+  {
+    "id": "trip-fota",
+    "category": "excursions",
+    "title": "Fota Wildlife Park",
+    "desc": "Enorme parco zoologico sull'isola di Fota (comodo in treno). Animali docili come lemuri e canguri vivono liberi e passeggiano sui sentieri insieme ai visitatori.",
+    "transport": "Treno Kent Station → Fota",
+    "time": "15 min · ~4h visita",
+    "cost": "Gratis con carta + ingresso",
+    "hours": "Tutti i giorni 09:30–16:00/17:00",
+    "icon": "🦒",
+    "url": "https://www.fotawildlife.ie/"
+  },
+  {
+    "id": "trip-crosshaven",
+    "category": "excursions",
+    "title": "Crosshaven & Camden Fort",
+    "desc": "Villaggio costiero per la vela. Camden Fort Meagher: artiglieria sotterranea con vista sull'oceano (weekend estivi).",
+    "transport": "Bus 220 da Grand Parade",
+    "time": "45 min",
+    "cost": "Gratis con carta",
+    "icon": "🌊",
+    "url": "https://www.visitwestcork.ie/places/crosshaven/"
+  },
+  {
+    "id": "trip-midleton",
+    "category": "excursions",
+    "title": "Midleton (Jameson Distillery)",
+    "desc": "Tour della distilleria Jameson, alambicco storico e degustazione guidata.",
+    "transport": "Treno da Kent Station",
+    "time": "20 min",
+    "cost": "Gratis con carta + tour",
+    "icon": "🥃",
+    "url": "https://www.jamesonwhiskey.com/en/visit-us/jameson-distillery-midleton/"
+  },
+  {
+    "id": "trip-youghal",
+    "category": "excursions",
+    "title": "Youghal",
+    "desc": "Cittadina medievale fortificata con Claycastle beach e Clock Gate Tower.",
+    "transport": "Bus 260/240 da Parnell Place",
+    "time": "50 min",
+    "cost": "Gratis con carta / ~9€ A/R",
+    "icon": "🧱",
+    "url": "https://www.discoverireland.ie/cork/youghal"
+  },
+  {
+    "id": "trip-dingle",
+    "category": "excursions",
+    "title": "Killarney National Park",
+    "desc": "Giornata nella Contea di Kerry: laghi, cascate e Muckross House. Ideale per un weekend lungo fuori Cork.",
+    "transport": "Bus 40 / treno + bus",
+    "time": "~1h30",
+    "cost": "Pianifica in anticipo",
+    "icon": "🏞️",
+    "url": "https://www.killarneynationalpark.ie/"
+  }
+]

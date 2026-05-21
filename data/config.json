@@ -1,0 +1,20 @@
+{
+  "title": "Erasmus a Cork",
+  "subtitle": "11 luglio – 12 agosto 2026 · 5 settimane a Cork",
+  "erasmus": {
+    "start": "2026-07-11",
+    "end": "2026-08-12"
+  },
+  "tabs": [
+    { "id": "intro", "label": "Info & Trasporti", "icon": "ℹ️" },
+    { "id": "weather", "label": "Meteo", "icon": "🌤️" },
+    { "id": "culture", "label": "Cultura & Teatri", "icon": "🏛️" },
+    { "id": "food", "label": "Mangiare", "icon": "🍽️" },
+    { "id": "nightlife", "label": "Pub & Serate", "icon": "🍻" },
+    { "id": "shopping", "label": "Shopping", "icon": "🛍️" },
+    { "id": "excursions", "label": "Gite Fuori Porta", "icon": "🚂" },
+    { "id": "map", "label": "Mappa", "icon": "🗺️" },
+    { "id": "planner", "label": "Planner", "icon": "🗓️" }
+  ],
+  "placeFiles": ["culture", "food", "nightlife", "shopping", "excursions"]
+}

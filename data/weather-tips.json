@@ -1,0 +1,27 @@
+{
+  "season": {
+    "title": "Estate a Cork (luglio – agosto)",
+    "tempRange": "14°C – 21°C",
+    "highlights": [
+      "Giornate lunghe: luce fino alle 22:00",
+      "Piogge brevi e frequenti — la \"liquid sunshine\" irlandese",
+      "Vento atlantico: sensazione più fresca sulle gite costiere"
+    ]
+  },
+  "packing": [
+    "Giacca impermeabile leggera o k-way",
+    "Strati (felpa sottile + t-shirt)",
+    "Scarpe comode antipioggia",
+    "Crema solare (anche con nuvole)"
+  ],
+  "planning": [
+    { "condition": "Pioggia probabile (>60%)", "tip": "English Market, musei, pub con musica trad — perfetti al coperto." },
+    { "condition": "Giornata asciutta", "tip": "Fitzgerald's Park, Blarney, Fota Wildlife Park o lungomare a Cobh/Kinsale." },
+    { "condition": "Vento forte", "tip": "Preferisci il centro città; rimanda Scilly Walk o costa esposta." },
+    { "condition": "Serata fresca (<14°C)", "tip": "Pub al coperto; portati uno strato in più per il rientro." }
+  ],
+  "links": [
+    { "label": "Met Éireann (ufficiale)", "url": "https://www.met.ie/forecast/location/cork" },
+    { "label": "Open-Meteo", "url": "https://open-meteo.com/" }
+  ]
+}

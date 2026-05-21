@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cork Erasmus: Guida di Sopravvivenza e Scoperta</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="planner.js"></script>
+    <script src="map.js"></script>
+    <script src="planner-ui.js"></script>
+    <script src="weather.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FAF8F5;
+            color: #333333;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Lora', serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A3B18A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #588157;
+        }
+
+        .site-header {
+            background: linear-gradient(180deg, #344E41 0%, #2d4238 100%);
+            border-bottom: 1px solid rgba(163, 177, 138, 0.35);
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.12);
+        }
+        .site-header-inner {
+            min-height: 5.42rem; /* ~2/3 in più rispetto a 3.25rem */
+            display: flex;
+            align-items: center;
+            gap: 0.85rem 1.15rem;
+            padding: 0.35rem 0;
+        }
+        .site-brand {
+            flex-shrink: 0;
+            min-width: 0;
+            max-width: 11rem;
+        }
+        @media (min-width: 640px) {
+            .site-brand { max-width: 16rem; }
+        }
+        @media (min-width: 1024px) {
+            .site-brand { max-width: none; }
+        }
+        .site-brand-title {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) {
+            .site-brand-title { font-size: 1.35rem; }
+        }
+        .site-brand-dates {
+            display: block;
+            font-size: 0.72rem;
+            line-height: 1.35;
+            color: #A3B18A;
+            font-weight: 500;
+            margin-top: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @media (min-width: 768px) {
+            .site-brand-dates { font-size: 0.78rem; }
+        }
+
+        #main-nav {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 0.15rem 0;
+            mask-image: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 12px), transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 12px), transparent);
+        }
+        #main-nav::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.7rem;
+            border-radius: 0.55rem;
+            border: none;
+            background: transparent;
+            color: rgba(250, 248, 245, 0.88);
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        @media (min-width: 640px) {
+            .tab-btn { padding: 0.55rem 0.8rem; font-size: 0.8rem; gap: 0.45rem; }
+        }
+        .tab-btn .tab-icon { font-size: 1rem; line-height: 1; }
+        .tab-btn .tab-label { display: none; }
+        @media (min-width: 480px) {
+            .tab-btn .tab-label { display: inline; }
+        }
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FAF8F5;
+        }
+        .tab-btn.active {
+            background: #FAF8F5;
+            color: #344E41;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
+        .tab-btn:focus-visible {
+            outline: 2px solid #E9EDC9;
+            outline-offset: 1px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .place-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .place-card:hover { transform: translateY(-2px); }
+
+        .stat-card { background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 1rem; text-align: center; }
+        .stat-card--accent { background: #E9EDC9; border-color: #A3B18A; }
+        .stat-num { display: block; font-size: 1.75rem; font-weight: 700; color: #344E41; font-family: 'Lora', serif; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #588157; font-weight: 600; }
+
+        .day-picker-wrap { margin: 0 -0.25rem; }
+        .day-picker { display: flex; gap: 0.35rem; overflow-x: auto; padding: 0.25rem 0.25rem 0.5rem; scrollbar-width: thin; }
+        .day-chip { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 2.75rem; padding: 0.35rem 0.5rem; border-radius: 0.75rem; border: 2px solid transparent; background: #fff; font-size: 0.65rem; color: #666; cursor: pointer; transition: all 0.15s; position: relative; }
+        .day-chip:hover { border-color: #A3B18A; }
+        .day-chip--active { background: #344E41; color: #FAF8F5; border-color: #344E41; }
+        .day-chip--has:not(.day-chip--active) { background: #E9EDC9; }
+        .day-chip-n { font-size: 1rem; font-weight: 700; line-height: 1; }
+        .day-chip-dot { position: absolute; top: 2px; right: 4px; background: #D97757; color: #fff; font-size: 9px; min-width: 14px; height: 14px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+        .filter-pill { padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; border: 2px solid #E9EDC9; background: #fff; color: #588157; cursor: pointer; }
+        .filter-pill--active { background: #344E41; color: #fff; border-color: #344E41; }
+
+        .planner-form-card { background: #fff; border: 1px solid #E9EDC9; border-radius: 1.25rem; padding: 1.25rem; box-shadow: 0 1px 3px rgba(52,78,65,.06); }
+        .planner-form-title { font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 700; color: #344E41; margin-bottom: 0.25rem; }
+        .field-label { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #588157; margin: 0.75rem 0 0.25rem; }
+        .field-input { width: 100%; padding: 0.6rem 0.85rem; border-radius: 0.75rem; border: 1px solid #e5e7eb; font-size: 0.9rem; }
+        .field-input:focus { outline: none; border-color: #A3B18A; box-shadow: 0 0 0 3px rgba(163,177,138,.25); }
+
+        .btn-primary { padding: 0.75rem 1rem; border-radius: 0.75rem; background: #344E41; color: #fff; font-weight: 700; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #588157; }
+        .btn-secondary { padding: 0.5rem 0.85rem; border-radius: 0.75rem; border: 1px solid #A3B18A; background: #fff; font-weight: 600; cursor: pointer; }
+        .btn-secondary:hover { background: #E9EDC9; }
+
+        .planner-view-tabs { display: flex; gap: 0.25rem; background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 0.25rem; }
+        .planner-tab { flex: 1; padding: 0.5rem 0.75rem; border-radius: 0.75rem; font-size: 0.8rem; font-weight: 600; color: #588157; border: none; background: transparent; cursor: pointer; }
+        .planner-tab--active { background: #344E41; color: #fff; }
+
+        .plan-card { display: flex; gap: 0.75rem; align-items: flex-start; background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 1rem; transition: opacity 0.2s; }
+        .plan-card--done { opacity: 0.55; }
+        .plan-card-time { font-size: 0.85rem; font-weight: 700; color: #588157; min-width: 3rem; padding-top: 0.15rem; }
+        .plan-card-body { flex: 1; min-width: 0; }
+        .plan-card-actions { display: flex; flex-direction: column; gap: 0.25rem; }
+        .btn-icon { width: 2rem; height: 2rem; border-radius: 0.5rem; border: 1px solid #E9EDC9; background: #FAF8F5; font-weight: 700; cursor: pointer; }
+        .btn-icon--danger:hover { background: #FEE2E2; border-color: #FECACA; color: #B91C1C; }
+        .plan-link { font-size: 0.7rem; font-weight: 600; color: #588157; background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0; }
+
+        .agenda-day-title { font-family: 'Lora', serif; font-size: 0.95rem; color: #344E41; margin: 1rem 0 0.5rem; padding-bottom: 0.25rem; border-bottom: 2px solid #E9EDC9; }
+        .agenda-day:first-child .agenda-day-title { margin-top: 0; }
+
+        .cal-week { margin-bottom: 1.25rem; }
+        .cal-week-label { font-size: 0.75rem; font-weight: 700; color: #588157; margin-bottom: 0.5rem; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.35rem; }
+        .cal-cell { display: flex; flex-direction: column; align-items: center; padding: 0.5rem 0.25rem; border-radius: 0.75rem; border: 2px solid #f3f4f6; background: #fff; cursor: pointer; transition: all 0.15s; min-height: 4.5rem; }
+        .cal-cell:hover { border-color: #A3B18A; }
+        .cal-cell--busy { background: #E9EDC9; border-color: #A3B18A; }
+        .cal-cell--sel { background: #344E41; color: #FAF8F5; border-color: #344E41; }
+        .cal-cell-d { font-size: 1.1rem; font-weight: 700; line-height: 1; }
+        .cal-cell-m { font-size: 0.6rem; opacity: 0.8; }
+        .cal-cell-n { font-size: 0.55rem; margin-top: 0.2rem; font-weight: 600; }
+
+        .empty-state { text-align: center; padding: 2.5rem 1rem; background: #fff; border-radius: 1rem; border: 1px dashed #A3B18A; color: #588157; }
+
+        #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%); background: #344E41; color: #FAF8F5; padding: 0.75rem 1.25rem; border-radius: 999px; font-size: 0.875rem; font-weight: 600; z-index: 9999; box-shadow: 0 8px 24px rgba(0,0,0,.15); transition: transform 0.3s ease; pointer-events: none; }
+        #toast.toast--show { transform: translateX(-50%) translateY(0); }
+
+        .map-pin-custom { background: transparent !important; border: none !important; }
+        .leaflet-popup-content-wrapper { border-radius: 12px; }
+
+        .weather-now {
+            display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;
+            background: linear-gradient(135deg, #344E41 0%, #588157 100%);
+            color: #FAF8F5; border-radius: 1.25rem; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+        }
+        .weather-now-main { display: flex; align-items: center; gap: 1rem; }
+        .weather-now-emoji { font-size: 3rem; line-height: 1; }
+        .weather-now-temp { font-family: 'Lora', serif; font-size: 2.5rem; font-weight: 700; line-height: 1; }
+        .weather-now-label { font-size: 1rem; font-weight: 600; margin-top: 0.15rem; }
+        .weather-now-stats { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+        .weather-now-stats div { text-align: center; }
+        .stat-k { display: block; font-size: 0.65rem; text-transform: uppercase; opacity: 0.75; letter-spacing: 0.04em; }
+        .stat-v { font-size: 1rem; font-weight: 700; }
+
+        .weather-picks { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.25rem; }
+        @media (min-width: 640px) { .weather-picks { grid-template-columns: 1fr 1fr; } }
+        .weather-pick { padding: 0.75rem 1rem; border-radius: 0.75rem; font-size: 0.8rem; line-height: 1.4; }
+        .weather-pick strong { display: block; margin-bottom: 0.2rem; }
+        .weather-pick--good { background: #E9EDC9; color: #344E41; border: 1px solid #A3B18A; }
+        .weather-pick--rain { background: #E8F0F8; color: #2c5282; border: 1px solid #bee3f8; }
+
+        .weather-section-title { font-family: 'Lora', serif; font-size: 1.1rem; color: #344E41; margin-bottom: 0.75rem; }
+        .weather-days-scroll {
+            display: flex; gap: 0.65rem; overflow-x: auto; padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+            scrollbar-width: thin; -webkit-overflow-scrolling: touch;
+        }
+        .weather-day {
+            flex: 0 0 7.5rem; background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem;
+            padding: 0.75rem 0.5rem; text-align: center; position: relative;
+        }
+        .weather-day--erasmus { border-color: #588157; box-shadow: 0 0 0 2px rgba(88,129,87,.2); }
+        .weather-day--rainy { background: #f8fafc; }
+        .weather-day-tag {
+            position: absolute; top: 4px; right: 4px; font-size: 0.5rem; font-weight: 700;
+            text-transform: uppercase; background: #588157; color: #fff; padding: 1px 4px; border-radius: 4px;
+        }
+        .weather-day-wd { font-size: 0.7rem; font-weight: 700; color: #588157; text-transform: uppercase; }
+        .weather-day-date { font-size: 0.65rem; color: #888; margin-bottom: 0.35rem; }
+        .weather-day-emoji { font-size: 1.75rem; line-height: 1.2; }
+        .weather-day-label { font-size: 0.6rem; color: #555; min-height: 2.2em; line-height: 1.2; margin: 0.2rem 0; }
+        .weather-day-temps { font-weight: 700; margin: 0.25rem 0; }
+        .weather-tmax { font-size: 1.1rem; color: #344E41; }
+        .weather-tmin { font-size: 0.85rem; color: #888; margin-left: 0.15rem; }
+        .weather-day-meta { font-size: 0.6rem; color: #666; display: flex; justify-content: center; gap: 0.35rem; flex-wrap: wrap; }
+        .weather-badge {
+            display: inline-block; margin-top: 0.4rem; font-size: 0.55rem; font-weight: 700;
+            padding: 2px 6px; border-radius: 999px;
+        }
+        .weather-badge--good { background: #E9EDC9; color: #344E41; }
+        .weather-badge--mid { background: #f3f4f6; color: #555; }
+        .weather-badge--rain { background: #dbeafe; color: #1e40af; }
+
+        .weather-tips-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .weather-tips-grid { grid-template-columns: 1fr 1fr; } }
+        .weather-panel--wide { grid-column: 1 / -1; }
+        .weather-panel { background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 1rem 1.15rem; }
+        .weather-panel-title { font-family: 'Lora', serif; font-size: 1rem; font-weight: 700; color: #344E41; margin-bottom: 0.5rem; }
+        .weather-list { font-size: 0.85rem; color: #555; line-height: 1.5; padding-left: 1.1rem; margin: 0; }
+        .weather-list li { margin-bottom: 0.25rem; }
+        .weather-plan-row { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.8rem; }
+        @media (min-width: 640px) {
+            .weather-plan-row { flex-direction: row; gap: 0.75rem; }
+            .weather-plan-cond { flex: 0 0 11rem; font-weight: 600; color: #588157; }
+        }
+        .weather-plan-tip { color: #555; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Chosen Palette: Warm Neutrals & Irish Greens (Background: #FAF8F5, Accents: #A3B18A, #588157, #344E41, Text: #333333) -->
+    <!-- Application Structure Plan: La SPA utilizza un'interfaccia a schede stile dashboard. Questa struttura permette all'utente di navigare rapidamente tra le diverse categorie di attività (Logistica, Cultura, Locali, Chicche, Gite) senza perdersi in una pagina eccessivamente lunga, favorendo l'usabilità immediata da mobile e desktop durante il soggiorno Erasmus. Ogni elemento contiene ora un link interattivo per approfondire direttamente sul sito ufficiale. -->
+    <!-- Visualization & Content Choices: Spese Erasmus -> Grafico a ciambella con Chart.js per mostrare in modo pulito le proporzioni del budget mensile. Per i luoghi e le gite si usano delle griglie di card interattive e dinamiche con indicatori visivi di cliccabilità (link esterni) per massimizzare l'esplorazione autonoma del territorio. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="site-header text-[#FAF8F5] sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-3 sm:px-4 site-header-inner">
+            <div class="site-brand">
+                <h1 class="site-brand-title">☘️ Erasmus a Cork</h1>
+                <p id="app-subtitle" class="site-brand-dates">Caricamento…</p>
+            </div>
+            <nav id="main-nav" aria-label="Sezioni guida"></nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-8 relative">
+        <div id="main-content"></div>
+
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <footer class="bg-[#344E41] text-[#FAF8F5] py-6 text-center mt-auto">
+        <p class="opacity-80 text-sm">Pronto per il tuo Erasmus estivo a Cork? Esplora le sezioni e organizza le tue settimane! 🇮🇪</p>
+    </footer>
+
+    <script>
+        const appData = { tabs: [], places: [], config: null };
+
+        async function loadAppData() {
+            const base = getBasePath();
+            const configRes = await fetch(`${base}data/config.json`);
+            if (!configRes.ok) throw new Error('config.json');
+            const config = await configRes.json();
+            appData.config = config;
+            appData.tabs = config.tabs || [];
+
+            const files = config.placeFiles || [];
+            const placesArrays = await Promise.all(
+                files.map(async (name) => {
+                    const res = await fetch(`${base}data/places/${name}.json`);
+                    if (!res.ok) throw new Error(`places/${name}.json`);
+                    return res.json();
+                })
+            );
+            appData.places = placesArrays.flat();
+
+            try {
+                const coordsRes = await fetch(`${base}data/coordinates.json`);
+                if (coordsRes.ok) {
+                    const coords = await coordsRes.json();
+                    appData.places = appData.places.map(p => {
+                        const c = coords[p.id];
+                        return c ? { ...p, lat: c.lat, lng: c.lng } : p;
+                    });
+                }
+            } catch (_) { /* coordinate opzionali */ }
+
+            if (config.subtitle) {
+                const sub = document.getElementById('app-subtitle');
+                if (sub) sub.textContent = config.subtitle;
+            }
+            if (config.erasmus && window.planner?.setErasmusDates) {
+                window.planner.setErasmusDates(config.erasmus.start, config.erasmus.end);
+            }
+        }
+
+        let budgetChartInstance = null;
+        let currentTab = 'intro';
+        const filterState = { culture: '', food: '', nightlife: '', shopping: '', excursions: '', favOnly: {} };
+
+        function getBasePath() {
+            let path = window.location.pathname;
+            if (path.endsWith('/index.html')) path = path.slice(0, -10) + '/';
+            else if (!path.endsWith('/')) {
+                const slash = path.lastIndexOf('/');
+                path = slash >= 0 ? path.slice(0, slash + 1) : '/';
+            }
+            return path;
+        }
+
+        function placeById(id) {
+            return appData.places.find(p => p.id === id);
+        }
+
+        let toastTimer = null;
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            if (!el) return;
+            el.textContent = msg;
+            el.classList.add('toast--show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => el.classList.remove('toast--show'), 2800);
+        }
+
+        window.App = {
+            get places() { return appData.places; },
+            placeById,
+            switchTab,
+            showToast,
+            quickAddToPlanner
+        };
+
+        function initApp() {
+            renderNavigation();
+            switchTab('intro');
+        }
+
+        function renderNavigation() {
+            const navContainer = document.getElementById('main-nav');
+            navContainer.innerHTML = '';
+            appData.tabs.forEach(tab => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'tab-btn';
+                btn.onclick = () => switchTab(tab.id);
+                btn.id = `btn-${tab.id}`;
+                btn.setAttribute('aria-label', tab.label);
+                btn.title = tab.label;
+                btn.innerHTML = `<span class="tab-icon" aria-hidden="true">${tab.icon}</span><span class="tab-label">${tab.label}</span>`;
+                navContainer.appendChild(btn);
+            });
+        }
+
+        async function switchTab(tabId) {
+            if (currentTab === 'map') window.CorkMap?.destroyCorkMap();
+            if (currentTab === 'planner') window.PlannerUI?.destroy();
+            currentTab = tabId;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.id === `btn-${tabId}`) btn.classList.add('active');
+            });
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = '<div class="text-center text-gray-400 py-8">Caricamento...</div>';
+            try {
+                const base = getBasePath();
+                const resp = await fetch(`${base}sections/${tabId}.html`);
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                mainContent.innerHTML = await resp.text();
+                afterTabLoad(tabId);
+            } catch (e) {
+                mainContent.innerHTML = '<div class="text-center text-red-500 py-8">Errore nel caricamento della sezione.<br><span class="text-sm text-gray-500">Apri il sito tramite un server locale (<code>npx serve .</code>) o pubblicalo su GitHub Pages.</span></div>';
+                console.error(e);
+            }
+        }
+
+        function afterTabLoad(tabId) {
+            if (tabId === 'intro') initBudgetChart();
+            if (['culture', 'food', 'nightlife', 'shopping', 'excursions'].includes(tabId)) {
+                bindSectionFilters(tabId);
+                renderContent(tabId);
+            }
+            if (tabId === 'map') initMapTab();
+            if (tabId === 'weather') {
+                window.CorkWeather?.init(document.getElementById('weather-root'), {
+                    basePath: getBasePath(),
+                    erasmus: appData.config?.erasmus
+                });
+            }
+            if (tabId === 'planner') {
+                window.PlannerUI.render({
+                    places: appData.places,
+                    placeById
+                });
+            }
+        }
+
+        function initMapTab() {
+            const filters = document.getElementById('map-filters');
+            const refresh = () => window.CorkMap.initCorkMap(appData.places, {
+                plans: window.planner.getSavedPlans(),
+                onAddToPlanner: (place) => {
+                    switchTab('planner').then(() => {
+                        setTimeout(() => {
+                            const sel = document.getElementById('planner-place');
+                            const date = document.getElementById('planner-date');
+                            if (sel) sel.value = place.id;
+                            if (date) date.value = window.planner.START_DATE;
+                            showToast(`${place.title} — compila data e salva`);
+                        }, 350);
+                    });
+                }
+            });
+            window.CorkMap.renderMapFilters(filters, refresh);
+            refresh();
+        }
+
+        function bindSectionFilters(tabId) {
+            const search = document.getElementById(`${tabId}-search`);
+            const favBtn = document.getElementById(`${tabId}-fav-only`);
+            if (search) {
+                search.value = filterState[tabId] || '';
+                search.oninput = () => { filterState[tabId] = search.value; renderContent(tabId); };
+            }
+            if (favBtn) {
+                favBtn.onclick = () => {
+                    filterState.favOnly[tabId] = !filterState.favOnly[tabId];
+                    favBtn.classList.toggle('bg-[#344E41]', filterState.favOnly[tabId]);
+                    favBtn.classList.toggle('text-white', filterState.favOnly[tabId]);
+                    renderContent(tabId);
+                };
+            }
+        }
+
+        function filteredPlaces(tabId) {
+            const q = (filterState[tabId] || '').toLowerCase();
+            const favOnly = filterState.favOnly[tabId];
+            return appData.places.filter(p => {
+                if (p.category !== tabId) return false;
+                if (favOnly && !window.planner.isFavorite(p.id)) return false;
+                if (!q) return true;
+                const hay = [p.title, p.desc, p.location, p.highlight, p.note, p.hours, p.transport].filter(Boolean).join(' ').toLowerCase();
+                return hay.includes(q);
+            });
+        }
+
+        function renderContent(tabId) {
+            const places = filteredPlaces(tabId);
+            if (tabId === 'culture') {
+                const grid = document.getElementById('culture-grid');
+                if (grid) grid.innerHTML = places.map(p => createCard(p, 'bg-white text-gray-800', p.location, 'text-[#588157] bg-green-50')).join('') || emptyMsg();
+            } else if (tabId === 'food') {
+                const grid = document.getElementById('food-grid');
+                if (grid) grid.innerHTML = places.map(p => createCard(p, 'bg-white text-gray-800', p.note, 'text-[#D97757] bg-orange-50')).join('') || emptyMsg();
+            } else if (tabId === 'nightlife') {
+                const grid = document.getElementById('nightlife-grid');
+                if (grid) grid.innerHTML = places.map(p => createCard(p, 'bg-[#2C3E50] text-white', p.highlight, 'text-[#E9EDC9] bg-white bg-opacity-10')).join('') || emptyMsg();
+            } else if (tabId === 'shopping') {
+                const grid = document.getElementById('shopping-grid');
+                if (grid) grid.innerHTML = places.map(p => createCard(p, 'bg-white text-gray-800', p.note, 'text-[#344E41] bg-yellow-50')).join('') || emptyMsg();
+            } else if (tabId === 'excursions') {
+                const list = document.getElementById('excursions-list');
+                if (list) list.innerHTML = places.map(p => createExcursionRow(p)).join('') || emptyMsg();
+            }
+            bindCardActions();
+        }
+
+        function emptyMsg() {
+            return '<p class="text-center text-gray-500 py-8 col-span-2">Nessun risultato. Prova un\'altra ricerca.</p>';
+        }
+
+        function bindCardActions() {
+            document.querySelectorAll('[data-fav]').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const id = btn.dataset.fav;
+                    window.planner.toggleFavorite(id);
+                    renderContent(currentTab);
+                };
+            });
+            document.querySelectorAll('[data-add-plan]').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const place = placeById(btn.dataset.addPlan);
+                    if (place) quickAddToPlanner(place);
+                };
+            });
+            document.querySelectorAll('[data-show-map]').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const place = placeById(btn.dataset.showMap);
+                    if (!place?.lat) return;
+                    switchTab('map').then(() => {
+                        setTimeout(() => {
+                            window.CorkMap.initCorkMap(appData.places.filter(p => p.id === place.id), {
+                                plans: window.planner.getSavedPlans(),
+                                fitZoom: 16,
+                                onAddToPlanner: quickAddToPlanner
+                            });
+                        }, 400);
+                    });
+                };
+            });
+        }
+
+        function quickAddToPlanner(place) {
+            switchTab('planner').then(() => {
+                setTimeout(() => {
+                    const sel = document.getElementById('planner-place');
+                    const date = document.getElementById('planner-date');
+                    if (sel) sel.value = place.id;
+                    if (date && !date.value) date.value = window.planner.START_DATE;
+                    document.getElementById('planner-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    showToast('Luogo selezionato — scegli data e conferma');
+                }, 300);
+            });
+        }
+
+        function createCard(place, bgClass, badgeText, badgeStyle = 'text-gray-500') {
+            const fav = window.planner.isFavorite(place.id);
+            const hasUrl = place.url && !place.url.startsWith('#');
+            return `
+                <article class="place-card ${bgClass} p-6 rounded-2xl shadow-sm flex flex-col h-full border border-gray-100 relative">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-4xl">${place.icon}</span>
+                        <div class="flex gap-1 flex-wrap justify-end">
+                            <button type="button" data-fav="${place.id}" class="text-lg leading-none px-2 py-1 rounded-lg hover:bg-black hover:bg-opacity-10" title="Preferito">${fav ? '★' : '☆'}</button>
+                            ${badgeText ? `<span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${badgeStyle}">${badgeText}</span>` : ''}
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">${place.title}</h3>
+                    ${place.hours ? `<p class="text-xs font-semibold opacity-80 mb-2">🕐 ${place.hours}</p>` : ''}
+                    <p class="text-sm opacity-90 flex-grow leading-relaxed">${place.desc}</p>
+                    <div class="mt-4 pt-3 border-t border-current border-opacity-10 flex flex-wrap gap-2">
+                        ${hasUrl ? `<a href="${place.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-black bg-opacity-5 hover:bg-opacity-10">Sito ↗</a>` : ''}
+                        ${place.lat != null ? `<button type="button" data-show-map="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41] hover:bg-[#A3B18A]">Mappa</button>` : ''}
+                        <button type="button" data-add-plan="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#588157] text-white hover:bg-[#344E41]">+ Planner</button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function createExcursionRow(place) {
+            const fav = window.planner.isFavorite(place.id);
+            return `
+                <article class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="text-5xl shrink-0 bg-[#E9EDC9] w-20 h-20 flex items-center justify-center rounded-full">${place.icon}</div>
+                    <div class="flex-grow text-center md:text-left w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                            <h3 class="text-2xl font-bold text-[#344E41]">${place.title}</h3>
+                            <button type="button" data-fav="${place.id}" class="text-xl" title="Preferito">${fav ? '★' : '☆'}</button>
+                        </div>
+                        <p class="text-gray-700 mb-2 leading-relaxed">${place.desc}</p>
+                        ${place.hours ? `<p class="text-xs text-[#588157] font-semibold mb-3">🕐 ${place.hours}</p>` : ''}
+                        <div class="flex flex-wrap gap-3 justify-center md:justify-start text-xs font-semibold mb-3">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">🚌/🚆 ${place.transport}</span>
+                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">⏱️ ${place.time}</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">💶 ${place.cost}</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                            <a href="${place.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41] hover:bg-[#A3B18A]">Info & biglietti ↗</a>
+                            ${place.lat != null ? `<button type="button" data-show-map="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41]">Mappa</button>` : ''}
+                            <button type="button" data-add-plan="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#588157] text-white hover:bg-[#344E41]">+ Planner</button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        function initBudgetChart() {
+            const canvas = document.getElementById('budgetChart');
+            if (!canvas) return;
+            if (budgetChartInstance) {
+                budgetChartInstance.destroy();
+                budgetChartInstance = null;
+            }
+            const ctx = canvas.getContext('2d');
+            
+            const data = {
+                labels: ['Cibo & Spesa quotidiana', 'Trasporti extra / Gite', 'Divertimento & Pub', 'Shopping & Souvenir'],
+                datasets: [{
+                    data: [250, 70, 180, 100],
+                    backgroundColor: [
+                        '#588157',
+                        '#A3B18A',
+                        '#D97757',
+                        '#E9EDC9'
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Nunito', sans-serif"
+                                },
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            };
+
+            budgetChartInstance = new Chart(ctx, config);
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const main = document.getElementById('main-content');
+            main.innerHTML = '<div class="text-center text-gray-400 py-12">Caricamento guida…</div>';
+            try {
+                await loadAppData();
+                initApp();
+            } catch (e) {
+                main.innerHTML = '<div class="text-center text-red-500 py-8">Impossibile caricare i dati.<br><span class="text-sm text-gray-500">Verifica che la cartella <code>data/</code> sia presente e che tu stia usando Live Server o GitHub Pages.</span></div>';
+                console.error(e);
+            }
+        });
+
+    </script>
+</body>
+</html>
