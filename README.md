@@ -60,6 +60,9 @@ data/
     shopping.json       # Mercati e shopping
     excursions.json     # Gite fuori porta
 sections/*.html         # Layout HTML di ogni scheda
+database/
+  init.sql              # Schema Supabase completo (eseguire una volta)
+  create-admin-users.sql # Promuove utenti Authentication a admin
 ```
 
 ## Modificare i luoghi
@@ -88,61 +91,26 @@ Per cambiare le date del planner, modifica `erasmus` in `data/config.json`.
 Il sito resta statico. Supabase serve solo agli admin per creare e approvare il programma ufficiale.
 Gli utenti normali non devono fare login: vedono la pagina **Programma** pubblica e usano il **Planner** personale salvato nel browser del dispositivo.
 
-1. Apri Supabase → SQL editor.
-2. Esegui tutto il file `database/supabase-schema.sql`.
-3. In Supabase → Project Settings → API copia la publishable key pubblica.
-4. Incollala in `data/supabase-config.json` nel campo `anonKey`.
-5. Crea gli utenti da Supabase Authentication con email e password.
-6. Assegna il ruolo nella tabella `profiles`.
+1. Apri Supabase → SQL editor ed esegui tutto `database/init.sql`.
+2. In Supabase → Project Settings → API copia la publishable key pubblica.
+3. Incollala in `data/supabase-config.json` nel campo `anonKey`.
+4. Crea gli account admin (vedi sotto).
 
-Se il database era già stato installato prima della pagina Programma, esegui anche:
+### Account admin
 
-```sql
-database/patch-public-approved-program.sql
-```
+Servono solo account `admin` (massimo 3 attivi). Per ciascuno:
 
-Per creare un utente senza inviare email:
+1. Supabase → **Authentication** → **Users** → **Add user** (email, password, **Auto Confirm User** attivo).
+2. Modifica le email in `database/create-admin-users.sql`.
+3. Esegui tutto `database/create-admin-users.sql` nel SQL Editor.
 
-1. Vai su Supabase → Authentication → Users.
-2. Clicca Add user.
-3. Inserisci email e password.
-4. Attiva Auto Confirm User.
-5. Salva.
+Il file definisce la funzione `ensure_admin_profile(email, nome)` e promuove gli utenti creati in Authentication. Alla fine mostra l'elenco admin attivi.
 
-Poi assegna o correggi il profilo da SQL Editor:
+Per aggiungere un admin in seguito, crea prima l'utente in Authentication poi esegui:
 
 ```sql
-update public.profiles
-set role = 'admin', status = 'active', display_name = 'Nome Admin'
-where email = 'admin@email.it';
+select public.ensure_admin_profile('nuovo-admin@email.it', 'Nome visualizzato');
 ```
-
-Per un utente normale:
-
-```sql
-update public.profiles
-set role = 'user', status = 'active', display_name = 'Nome Utente'
-where email = 'utente@email.it';
-```
-
-Per il nuovo flusso servono solo account `admin`. Gli account `user` esistenti non possono accedere al pannello Programma.
-
-Se la riga in `profiles` non esiste, inseriscila partendo dall'utente creato in Authentication:
-
-```sql
-insert into public.profiles (id, email, display_name, role, status)
-select id, email, 'Nome Utente', 'user', 'active'
-from auth.users
-where email = 'utente@email.it'
-on conflict (id) do update
-set display_name = excluded.display_name,
-    role = excluded.role,
-    status = excluded.status;
-```
-
-Se creando una proposta compare l'errore `new row violates row-level security policy for table "proposal_versions"`, esegui in SQL Editor il file `database/patch-proposal-versions-rls.sql`.
-
-Se modificando `profiles.role` o `profiles.status` da SQL Editor compare `Solo un admin puo modificare ruolo o stato`, esegui in SQL Editor il file `database/patch-profile-role-sql-editor.sql`.
 
 Regole implementate:
 

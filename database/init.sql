@@ -1,9 +1,17 @@
--- Supabase schema for the Cork group planner.
--- Run this in the Supabase SQL editor for project adeeoygokocbowrtomhw.
+-- =============================================================================
+-- Guida Cork — inizializzazione database Supabase
+-- Eseguire una sola volta nel SQL Editor di un progetto vuoto (o dopo reset).
+-- =============================================================================
 
+-- -----------------------------------------------------------------------------
+-- Estensioni
+-- -----------------------------------------------------------------------------
 create extension if not exists "pgcrypto";
 create extension if not exists "citext";
 
+-- -----------------------------------------------------------------------------
+-- Tabelle
+-- -----------------------------------------------------------------------------
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email citext not null unique,
@@ -71,6 +79,9 @@ create table if not exists public.approved_plannings (
   notes text not null default ''
 );
 
+-- -----------------------------------------------------------------------------
+-- Funzioni helper
+-- -----------------------------------------------------------------------------
 create or replace function public.is_active_member(user_id_input uuid default auth.uid())
 returns boolean
 language sql
@@ -160,6 +171,7 @@ security definer
 set search_path = public
 as $$
 begin
+  -- SQL Editor / manutenzione backend: nessun auth.uid(), modifica consentita.
   if auth.uid() is null then
     return new;
   end if;
@@ -167,6 +179,7 @@ begin
   if not public.is_admin(auth.uid()) and (new.role is distinct from old.role or new.status is distinct from old.status) then
     raise exception 'Solo un admin puo modificare ruolo o stato.';
   end if;
+
   return new;
 end;
 $$;
@@ -271,38 +284,52 @@ begin
 end;
 $$;
 
-create or replace trigger profiles_touch_updated_at
+-- -----------------------------------------------------------------------------
+-- Trigger
+-- -----------------------------------------------------------------------------
+drop trigger if exists profiles_touch_updated_at on public.profiles;
+create trigger profiles_touch_updated_at
 before update on public.profiles
 for each row execute function public.touch_updated_at();
 
-create or replace trigger profiles_admin_limit
+drop trigger if exists profiles_admin_limit on public.profiles;
+create trigger profiles_admin_limit
 before insert or update on public.profiles
 for each row execute function public.enforce_admin_limit();
 
-create or replace trigger profiles_protect_role
+drop trigger if exists profiles_protect_role on public.profiles;
+create trigger profiles_protect_role
 before update on public.profiles
 for each row execute function public.protect_profile_role();
 
-create or replace trigger invites_admin_limit
+drop trigger if exists invites_admin_limit on public.invites;
+create trigger invites_admin_limit
 before insert or update on public.invites
 for each row execute function public.enforce_admin_invite_limit();
 
-create or replace trigger on_auth_user_created
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
 after insert on auth.users
 for each row execute function public.handle_new_auth_user();
 
-create or replace trigger planning_proposals_version
+drop trigger if exists planning_proposals_version on public.planning_proposals;
+create trigger planning_proposals_version
 before update on public.planning_proposals
 for each row execute function public.version_planning_proposal();
 
-create or replace trigger planning_proposals_record_version
+drop trigger if exists planning_proposals_record_version on public.planning_proposals;
+create trigger planning_proposals_record_version
 after insert or update on public.planning_proposals
 for each row execute function public.record_proposal_version();
 
-create or replace trigger votes_touch_updated_at
+drop trigger if exists votes_touch_updated_at on public.votes;
+create trigger votes_touch_updated_at
 before update on public.votes
 for each row execute function public.touch_updated_at();
 
+-- -----------------------------------------------------------------------------
+-- Row Level Security
+-- -----------------------------------------------------------------------------
 alter table public.profiles enable row level security;
 alter table public.invites enable row level security;
 alter table public.planning_proposals enable row level security;
@@ -387,6 +414,9 @@ to authenticated
 using (public.is_admin())
 with check (public.is_admin());
 
+-- -----------------------------------------------------------------------------
+-- API RPC (chiamate dal sito)
+-- -----------------------------------------------------------------------------
 create or replace function public.list_planning_proposals()
 returns table (
   id uuid,
@@ -449,6 +479,7 @@ as $$
     p.created_at;
 $$;
 
+-- Programma pubblico: leggibile anche senza login (anon)
 create or replace function public.list_approved_program()
 returns table (
   id uuid,
@@ -513,6 +544,9 @@ begin
 end;
 $$;
 
+-- -----------------------------------------------------------------------------
+-- Permessi
+-- -----------------------------------------------------------------------------
 grant execute on function public.list_planning_proposals() to authenticated;
 grant execute on function public.list_approved_program() to anon, authenticated;
 grant execute on function public.approve_planning(uuid) to authenticated;
