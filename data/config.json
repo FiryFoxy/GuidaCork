@@ -6,16 +6,16 @@
     "end": "2026-08-12"
   },
   "tabs": [
-    { "id": "intro", "label": "Info & Trasporti", "icon": "ℹ️" },
-    { "id": "weather", "label": "Meteo", "icon": "🌤️" },
-    { "id": "culture", "label": "Cultura & Teatri", "icon": "🏛️" },
-    { "id": "food", "label": "Mangiare", "icon": "🍽️" },
-    { "id": "nightlife", "label": "Pub & Serate", "icon": "🍻" },
-    { "id": "shopping", "label": "Shopping", "icon": "🛍️" },
-    { "id": "excursions", "label": "Gite Fuori Porta", "icon": "🚂" },
-    { "id": "map", "label": "Mappa", "icon": "🗺️" },
-    { "id": "program", "label": "Programma", "icon": "✅" },
-    { "id": "planner", "label": "Planner", "icon": "🗓️" }
+    { "id": "intro", "label": "Info & Trasporti", "shortLabel": "Info", "icon": "ℹ️" },
+    { "id": "weather", "label": "Meteo", "shortLabel": "Meteo", "icon": "🌤️" },
+    { "id": "culture", "label": "Cultura & Teatri", "shortLabel": "Cultura", "icon": "🏛️" },
+    { "id": "food", "label": "Mangiare", "shortLabel": "Mangiare", "icon": "🍽️" },
+    { "id": "nightlife", "label": "Pub & Serate", "shortLabel": "Pub", "icon": "🍻" },
+    { "id": "shopping", "label": "Shopping", "shortLabel": "Shop", "icon": "🛍️" },
+    { "id": "excursions", "label": "Gite Fuori Porta", "shortLabel": "Gite", "icon": "🚂" },
+    { "id": "map", "label": "Mappa", "shortLabel": "Mappa", "icon": "🗺️" },
+    { "id": "program", "label": "Programma", "shortLabel": "Programma", "icon": "✅" },
+    { "id": "planner", "label": "Planner", "shortLabel": "Planner", "icon": "🗓️" }
   ],
   "placeFiles": ["culture", "food", "nightlife", "shopping", "excursions"]
 }

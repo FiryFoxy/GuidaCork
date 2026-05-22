@@ -56,7 +56,7 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-8 relative">
+    <main class="flex-grow max-w-6xl mx-auto w-full px-3 sm:px-4 py-4 sm:py-8 relative main-content">
         <div id="main-content"></div>
 
     </main>
@@ -187,8 +187,17 @@
                 btn.id = `btn-${tab.id}`;
                 btn.setAttribute('aria-label', tab.label);
                 btn.title = tab.label;
-                btn.innerHTML = `<span class="tab-icon" aria-hidden="true">${tab.icon}</span><span class="tab-label">${tab.label}</span>`;
+                const short = tab.shortLabel || tab.label;
+                btn.innerHTML = `<span class="tab-icon" aria-hidden="true">${tab.icon}</span><span class="tab-label tab-label--full">${tab.label}</span><span class="tab-label tab-label--short">${short}</span>`;
                 navContainer.appendChild(btn);
+            });
+        }
+
+        function scrollActiveTabIntoView(tabId) {
+            const btn = document.getElementById(`btn-${tabId}`);
+            if (!btn) return;
+            requestAnimationFrame(() => {
+                btn.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
             });
         }
 
@@ -201,6 +210,9 @@
                 btn.classList.remove('active');
                 if (btn.id === `btn-${tabId}`) btn.classList.add('active');
             });
+            scrollActiveTabIntoView(tabId);
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
             const mainContent = document.getElementById('main-content');
             mainContent.innerHTML = '<div class="text-center text-gray-400 py-8">Caricamento...</div>';
             try {
@@ -383,10 +395,10 @@
                     <h3 class="text-xl font-bold mb-2">${place.title}</h3>
                     ${place.hours ? `<p class="text-xs font-semibold opacity-80 mb-2">🕐 ${place.hours}</p>` : ''}
                     <p class="text-sm opacity-90 flex-grow leading-relaxed">${place.desc}</p>
-                    <div class="mt-4 pt-3 border-t border-current border-opacity-10 flex flex-wrap gap-2">
-                        ${hasUrl ? `<a href="${place.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-black bg-opacity-5 hover:bg-opacity-10">Sito ↗</a>` : ''}
-                        ${place.lat != null ? `<button type="button" data-show-map="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41] hover:bg-[#A3B18A]">Mappa</button>` : ''}
-                        <button type="button" data-add-plan="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#588157] text-white hover:bg-[#344E41]">+ Planner</button>
+                    <div class="place-card-actions mt-4 pt-3 border-t border-current border-opacity-10 flex flex-wrap gap-2">
+                        ${hasUrl ? `<a href="${place.url}" target="_blank" rel="noopener noreferrer" class="place-card-btn text-xs font-semibold px-3 py-1.5 rounded-full bg-black bg-opacity-5 hover:bg-opacity-10">Sito ↗</a>` : ''}
+                        ${place.lat != null ? `<button type="button" data-show-map="${place.id}" class="place-card-btn text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41] hover:bg-[#A3B18A]">Mappa</button>` : ''}
+                        <button type="button" data-add-plan="${place.id}" class="place-card-btn text-xs font-semibold px-3 py-1.5 rounded-full bg-[#588157] text-white hover:bg-[#344E41]">+ Planner</button>
                     </div>
                 </article>
             `;
@@ -409,10 +421,10 @@
                             <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">⏱️ ${place.time}</span>
                             <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">💶 ${place.cost}</span>
                         </div>
-                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                            <a href="${place.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41] hover:bg-[#A3B18A]">Info & biglietti ↗</a>
-                            ${place.lat != null ? `<button type="button" data-show-map="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41]">Mappa</button>` : ''}
-                            <button type="button" data-add-plan="${place.id}" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#588157] text-white hover:bg-[#344E41]">+ Planner</button>
+                        <div class="place-card-actions flex flex-wrap gap-2 justify-center md:justify-start">
+                            <a href="${place.url}" target="_blank" rel="noopener noreferrer" class="place-card-btn text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41] hover:bg-[#A3B18A]">Info & biglietti ↗</a>
+                            ${place.lat != null ? `<button type="button" data-show-map="${place.id}" class="place-card-btn text-xs font-semibold px-3 py-1.5 rounded-full bg-[#E9EDC9] text-[#344E41]">Mappa</button>` : ''}
+                            <button type="button" data-add-plan="${place.id}" class="place-card-btn text-xs font-semibold px-3 py-1.5 rounded-full bg-[#588157] text-white hover:bg-[#344E41]">+ Planner</button>
                         </div>
                     </div>
                 </article>
