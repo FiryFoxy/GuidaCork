@@ -305,7 +305,7 @@ h1, h2, h3, .serif-font {
     position: fixed;
     bottom: calc(1.5rem + env(safe-area-inset-bottom));
     left: 50%;
-    transform: translateX(-50%) translateY(120%);
+    transform: translateX(-50%) translateY(0.75rem);
     background: #344E41;
     color: #FAF8F5;
     padding: 0.75rem 1.25rem;
@@ -314,12 +314,18 @@ h1, h2, h3, .serif-font {
     font-weight: 600;
     z-index: 9999;
     box-shadow: 0 8px 24px rgba(0,0,0,.15);
-    transition: transform 0.3s ease;
     pointer-events: none;
     max-width: calc(100vw - 2rem);
     text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
-#toast.toast--show { transform: translateX(-50%) translateY(0); }
+#toast.toast--show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
 
 .map-pin-custom { background: transparent !important; border: none !important; }
 .leaflet-popup-content-wrapper { border-radius: 12px; }

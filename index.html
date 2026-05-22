@@ -152,11 +152,14 @@
         let toastTimer = null;
         function showToast(msg) {
             const el = document.getElementById('toast');
-            if (!el) return;
+            if (!el || !msg) return;
             el.textContent = msg;
             el.classList.add('toast--show');
             clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => el.classList.remove('toast--show'), 2800);
+            toastTimer = setTimeout(() => {
+                el.classList.remove('toast--show');
+                el.textContent = '';
+            }, 2800);
         }
 
         window.App = {
