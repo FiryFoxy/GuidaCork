@@ -6,6 +6,7 @@
     "desc": "Un museo insolito e curioso dedicato alla storia del burro irlandese, che un tempo rendeva Cork uno dei mozzi commerciali più ricchi dell'Impero. Un vero tuffo nell'archeologia industriale locale.",
     "icon": "🧈",
     "location": "Shandon",
+    "hours": "Mar-Sab 10:00–16:00 · Dom 11:00–16:00",
     "url": "https://thebuttermuseum.com/"
   },
   {
@@ -25,6 +26,7 @@
     "desc": "Situata nello spettacolare campus alberato dell'UCC (University College Cork). Questo pluripremiato museo d'arte contemporanea organizza esposizioni temporanee d'avanguardia ed eventi culturali gratuiti.",
     "icon": "🎨",
     "location": "UCC Campus",
+    "hours": "Mar-Ven 10:00–17:00 · Sab 10:00–18:00 · Dom 14:00–17:00",
     "url": "https://www.glucksman.org/"
   },
   {
@@ -34,6 +36,7 @@
     "desc": "Un convento settecentesco splendidamente restaurato che oggi ospita un museo interattivo sulla vita di Nano Nagle, giardini interni nascosti e silenziosi, un bar biologico e un fantastico bookshop.",
     "icon": "🌿",
     "location": "Douglas St.",
+    "hours": "Lun-Sab 10:00–17:00 · Dom 12:00–17:00",
     "url": "https://nanonagleplace.ie/"
   },
   {
@@ -43,6 +46,7 @@
     "desc": "Forte a stella del XVII secolo situato appena fuori dal centro storico. Offre una panoramica spettacolare sui tetti di Cork e ricostruzioni storiche molto dettagliate sulla storia militare della città.",
     "icon": "🏰",
     "location": "Barrack St.",
+    "hours": "Mag–Set lun-sab 10:00–17:00 · dom 12:00–17:00 · tour guidati su prenotazione",
     "url": "https://www.corkcity.ie/en/elizabeth-fort/"
   },
   {
@@ -52,6 +56,7 @@
     "desc": "Una maestosa cattedrale neogotica trifogliata in pietra calcarea locale. I suoi interni sono ricchi di mosaici, vetrate colorate spettacolari e un celebre angelo dorato che la leggenda dice suonerà la tromba alla fine del mondo.",
     "icon": "⛪",
     "location": "Bishop St.",
+    "hours": "Lun-Sab 09:30–17:00 · Dom 12:30–14:30 · ingresso a pagamento",
     "url": "https://cork.anglican.org/cathedrals/st-fin-barres-cathedral/"
   },
   {
@@ -61,6 +66,7 @@
     "desc": "Centro culturale multidisciplinare in un'antica chiesa sconsacrata (Christchurch). Programmazione di cinema, musica classica, jazz, folk, teatro amatoriale e mostre d'arte.",
     "icon": "🎻",
     "location": "Tobin St.",
+    "hours": "Box office lun-sab 10:00–17:00 · orari spettacoli variabili",
     "url": "https://triskelartscentre.ie/"
   },
   {
@@ -70,6 +76,7 @@
     "desc": "Vivace polo culturale nel cuore della città: opera lirica, balletto, musical, teatro drammatico, cabaret e sketch comici per tutte le età.",
     "icon": "🎭",
     "location": "Emmet Place",
+    "hours": "Box office lun-sab 10:00–17:00 · spettacoli serali (orario su biglietto)",
     "url": "https://corkoperahouse.ie/"
   },
   {
@@ -79,6 +86,7 @@
     "desc": "Teatro storico ed elegante, riferimento per recitazione classica e d'avanguardia. Laboratori shakespeariani e, a fine ottobre, palco del Guinness Jazz Festival.",
     "icon": "🎪",
     "location": "MacCurtain St.",
+    "hours": "Box office lun-sab 10:00–17:00 · spettacoli serali (orario su biglietto)",
     "url": "https://everymancork.com/"
   },
   {
@@ -88,6 +96,7 @@
     "desc": "Galleria municipale gratuita con collezione permanente di arte irlandese e europea, sculture e mostre temporanee nel cuore del centro.",
     "icon": "🖼️",
     "location": "Emmet Place",
+    "hours": "Lun-Sab 10:00–17:00 · Dom 11:00–16:00 · ingresso gratuito",
     "url": "https://crawfordartgallery.ie/"
   }
 ]

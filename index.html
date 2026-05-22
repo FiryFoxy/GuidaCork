@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cork Erasmus: Guida di Sopravvivenza e Scoperta</title>
+    <title>Erasmus a Cork — Guida interattiva</title>
+    <meta name="description" content="Guida Erasmus a Cork: musei, ristoranti, pub, gite, meteo, mappa e planner uscite. Luglio–agosto 2026." />
+    <meta name="theme-color" content="#344E41" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/logo.svg" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Erasmus a Cork" />
+    <meta property="og:title" content="Erasmus a Cork — Guida interattiva ☘️" />
+    <meta property="og:description" content="Musei, mangiare, pub, shopping, gite fuori porta, meteo e planner per il tuo Erasmus a Cork." />
+    <meta property="og:image" id="meta-og-image" content="" />
+    <meta property="og:url" id="meta-og-url" content="" />
+    <meta property="og:locale" content="it_IT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Erasmus a Cork — Guida interattiva ☘️" />
+    <meta name="twitter:description" content="Organizza il tuo Erasmus a Cork: luoghi, mappe, meteo e planner." />
+    <meta name="twitter:image" id="meta-twitter-image" content="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -395,6 +410,29 @@
             if (config.erasmus && window.planner?.setErasmusDates) {
                 window.planner.setErasmusDates(config.erasmus.start, config.erasmus.end);
             }
+            setShareMeta(config);
+        }
+
+        function setShareMeta(config) {
+            const pageUrl = window.location.href.split('#')[0];
+            const ogImage = new URL('assets/og-image.svg', window.location.href).href;
+            const title = config?.title ? `${config.title} — Guida interattiva ☘️` : 'Erasmus a Cork — Guida interattiva ☘️';
+            const desc = config?.subtitle || 'Guida Erasmus a Cork: musei, ristoranti, pub, gite, meteo e planner.';
+
+            document.title = title.replace(' ☘️', '');
+            const setMeta = (id, value) => {
+                const el = document.getElementById(id);
+                if (el) el.setAttribute('content', value);
+            };
+            setMeta('meta-og-image', ogImage);
+            setMeta('meta-og-url', pageUrl);
+            setMeta('meta-twitter-image', ogImage);
+
+            document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+            document.querySelector('meta[property="og:description"]')?.setAttribute('content', desc);
+            document.querySelector('meta[name="description"]')?.setAttribute('content', desc);
+            document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
+            document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', desc);
         }
 
         let budgetChartInstance = null;

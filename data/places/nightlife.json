@@ -6,6 +6,7 @@
     "desc": "Pub storico dall'atmosfera estremamente rilassata. Concerti improvvisati e ballate popolari irlandesi quasi ogni giorno, con brani sconosciuti suonati da musicisti tradizionali locali.",
     "icon": "🎻",
     "highlight": "Trad Session",
+    "hours": "Ogni giorno ~12:00–23:30 · live music serale",
     "url": "https://www.facebook.com/SinECork/"
   },
   {
@@ -15,6 +16,7 @@
     "desc": "Celebre birrificio artigianale sul sito di un antico monastero del 1219. Beer garden, birre pluripremiate e pizze cotte a legna.",
     "icon": "🍺",
     "highlight": "Birra Artigianale & Pizza",
+    "hours": "Lun-Gio 16:00–23:30 · Ven-Sab 12:00–00:30 · Dom 12:00–23:00",
     "url": "https://franwellbar.com/"
   },
   {
@@ -24,6 +26,7 @@
     "desc": "Il top nel Victorian Quarter per gli amanti del whiskey irlandese. Personale preparato che ti guida tra i migliori distillati locali.",
     "icon": "🥃",
     "highlight": "Irish Whiskey",
+    "hours": "Lun-Gio 16:00–23:30 · Ven-Sab 14:00–00:30 · Dom 14:00–23:00",
     "url": "https://theshelbournebar.ie/"
   },
   {
@@ -33,6 +36,7 @@
     "desc": "Ex club per gentiluomini oggi adibito a grandissimo spazio eventi. DJ set, concerti rock, blues, jazz e spettacoli fino a notte fonda.",
     "icon": "🪩",
     "highlight": "Musica Live & Clubbing",
+    "hours": "Ven-Sab ~21:00–02:00 · eventi speciali (vedi sito)",
     "url": "https://www.cranelanetheatre.ie/"
   },
   {
@@ -42,6 +46,7 @@
     "desc": "Pub su più piani, ideale per studenti. Balli tradizionali irlandesi e musica live quasi a ciclo continuo.",
     "icon": "🕺",
     "highlight": "Irish Dance Show",
+    "hours": "Lun-Gio 11:00–23:30 · Ven-Sab 11:00–01:00 · Dom 12:00–23:00",
     "url": "https://theoliverplunkett.com/"
   },
   {
@@ -51,6 +56,7 @@
     "desc": "Uno dei pub più suggestivi e antichi di Cork: pareti scure, candele e caminetto scoppiettante, di fianco all'English Market. Molto frequentato — arriva presto per un tavolo.",
     "icon": "🕯️",
     "highlight": "Pub Storico",
+    "hours": "Lun-Sab 16:00–23:30 · Dom 14:00–22:30",
     "url": "https://www.facebook.com/themuttonlaneinn/"
   },
   {
@@ -60,6 +66,7 @@
     "desc": "Piccolo pub inalterato dal 1918, luci soffuse e caminetto. Atmosfera d'altri tempi unica.",
     "icon": "🔥",
     "highlight": "Caminetto & Intimità",
+    "hours": "Lun-Sab 16:30–23:30 · Dom 14:00–22:00",
     "url": "https://www.facebook.com/TheOvalBarCork/"
   },
   {
@@ -69,6 +76,7 @@
     "desc": "Pub storico dal carattere vivace, rustico e accogliente. Musica tradizionale irlandese quasi ogni sera; ritrovo prediletto degli studenti nel weekend.",
     "icon": "🪵",
     "highlight": "Trad & Studenti",
+    "hours": "Lun-Gio 16:00–23:30 · Ven-Sab 14:00–01:00 · Dom 14:00–23:00",
     "url": "https://anspailpin.ie/"
   },
   {
@@ -78,6 +86,7 @@
     "desc": "Perla per chi ama Rock e Metal, fedele al motto \"Keep on rocking in the free world!\". Serata alternativa con band emergenti.",
     "icon": "🤘",
     "highlight": "Rock & Metal",
+    "hours": "Lun-Gio 17:00–23:30 · Ven-Sab 17:00–01:00 · Dom 17:00–23:00",
     "url": "https://www.facebook.com/FredZeppelins/"
   },
   {
@@ -87,6 +96,7 @@
     "desc": "Piccolo pub in stile antico, intimo ed elegante. Ottima musica dal vivo per cinque sere a settimana nel centro cittadino.",
     "icon": "🥁",
     "highlight": "Live 5 sere/sett.",
+    "hours": "Mar-Sab 17:00–23:30 · live music 5 sere/settimana",
     "url": "https://www.facebook.com/AnBodhranPub/"
   },
   {
@@ -96,6 +106,7 @@
     "desc": "Pub raffinato con atmosfera tardo-vittoriana: splendide vetrate istoriate e mobili storici curati nei minimi dettagli.",
     "icon": "🪟",
     "highlight": "Vittoriano",
+    "hours": "Lun-Gio 16:00–23:30 · Ven-Sab 14:00–00:30 · Dom 14:00–23:00",
     "url": "https://danlowreys.ie/"
   },
   {
@@ -105,6 +116,7 @@
     "desc": "Locale polivalente con concerti indie, folk e jam session in un ambiente intimo nel quartiere di Douglas Street.",
     "icon": "🎸",
     "highlight": "Live Indie & Folk",
+    "hours": "Bar lun-sab 17:00–23:30 · concerti serali (calendario online)",
     "url": "https://coughlanslive.com/"
   }
 ]

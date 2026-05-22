@@ -10,7 +10,7 @@ Ogni file contiene un **array** di luoghi. Dopo la modifica, ricarica la pagina.
 | `desc` | sì | Descrizione |
 | `icon` | sì | Emoji |
 | `url` | no | Link sito ufficiale |
-| `hours` | no | Orari di apertura |
+| `hours` | consigliato | Orari di apertura (mostrati su ogni scheda) |
 | `location` | no | Quartiere (cultura) |
 | `note` | no | Etichetta breve (food, shopping) |
 | `highlight` | no | Etichetta breve (pub) |

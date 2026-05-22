@@ -7,6 +7,7 @@
     "transport": "Treno da Kent Station",
     "time": "25 min",
     "cost": "Gratis con carta / ~6€ A/R",
+    "hours": "Titanic Experience ~09:30–18:00 · borgo sempre accessibile",
     "icon": "⚓",
     "url": "https://www.visitcobh.com/"
   },
@@ -18,6 +19,7 @@
     "transport": "Bus 226 da Parnell Place",
     "time": "50 min",
     "cost": "Gratis con carta / ~8€ A/R",
+    "hours": "Charles Fort apr–ott 10:00–18:00 · centro tutto il giorno",
     "icon": "⛵",
     "url": "https://www.discoverireland.ie/cork/kinsale"
   },
@@ -53,6 +55,7 @@
     "transport": "Bus 220 da Grand Parade",
     "time": "45 min",
     "cost": "Gratis con carta",
+    "hours": "Camden Fort weekend estivi ~11:00–17:00 · villaggio tutto il giorno",
     "icon": "🌊",
     "url": "https://www.visitwestcork.ie/places/crosshaven/"
   },
@@ -64,6 +67,7 @@
     "transport": "Treno da Kent Station",
     "time": "20 min",
     "cost": "Gratis con carta + tour",
+    "hours": "Tour ~10:00–18:00 · prenotazione consigliata",
     "icon": "🥃",
     "url": "https://www.jamesonwhiskey.com/en/visit-us/jameson-distillery-midleton/"
   },
@@ -75,6 +79,7 @@
     "transport": "Bus 260/240 da Parnell Place",
     "time": "50 min",
     "cost": "Gratis con carta / ~9€ A/R",
+    "hours": "Clock Gate Tower apr–set 10:00–18:00 · spiaggia libera",
     "icon": "🧱",
     "url": "https://www.discoverireland.ie/cork/youghal"
   },
@@ -86,6 +91,7 @@
     "transport": "Bus 40 / treno + bus",
     "time": "~1h30",
     "cost": "Pianifica in anticipo",
+    "hours": "Parco: tutti i giorni · Muckross House apr–ott 09:30–17:30",
     "icon": "🏞️",
     "url": "https://www.killarneynationalpark.ie/"
   }

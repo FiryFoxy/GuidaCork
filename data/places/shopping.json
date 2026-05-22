@@ -6,7 +6,7 @@
     "desc": "Magnifico mercato coperto vittoriano (1788) con archi, fontane e gallerie. Paradiso gastronomico: bio, carni pregiate, pesce fresco e pane artigianale come la brown soda bread.",
     "icon": "🥐",
     "note": "Mercato coperto",
-    "hours": "Lun-Sab 08:30–18:00",
+    "hours": "Lun-Sab 08:30–18:00 · Chiuso domenica",
     "url": "https://www.corkcity.ie/en/english-market/"
   },
   {
@@ -26,6 +26,7 @@
     "desc": "Grande centro commerciale in un ex deposito sul fiume. Boutique, Dunnes, Penneys/Primark, negozi di musica e caffè-ristorante self-service al primo piano.",
     "icon": "🏬",
     "note": "Shopping center",
+    "hours": "Lun-Sab 09:00–18:00 · Dom 12:00–18:00",
     "url": "https://mqsc.ie/"
   },
   {
@@ -35,6 +36,7 @@
     "desc": "Mercato vintage: abbigliamento retrò, libri usati, vinili e oggettistica stravagante.",
     "icon": "🧥",
     "note": "Aperto Ven-Sab-Dom",
+    "hours": "Ven 12:00–18:00 · Sab-Dom 11:00–18:00",
     "url": "https://www.facebook.com/MotherJonesFleaMarket/"
   },
   {
@@ -44,6 +46,7 @@
     "desc": "Sali la torre campanaria di St Anne, suona le campane con spartiti semplificati e goditi la vista a 360° su Cork.",
     "icon": "🔔",
     "note": "Vista a 360 gradi",
+    "hours": "Mar-Mag & Ott 10:00–16:00 · Giu-Set 10:00–16:30 · Nov-Feb 11:00–15:00",
     "url": "https://www.stanneshandon.ie/"
   },
   {
@@ -53,6 +56,7 @@
     "desc": "Il polmone verde di Cork, ideale per picnic. Il \"Shakey Bridge\" è l'unico ponte sospeso pedonale d'Irlanda.",
     "icon": "🌉",
     "note": "Ingresso Libero",
+    "hours": "Parco: tutti i giorni · luce diurna · ingresso gratuito",
     "url": "https://www.corkcity.ie/en/things-to-do/fitzgeralds-park/"
   },
   {
@@ -62,6 +66,7 @@
     "desc": "Libreria indipendente con libri usati a pochissimi euro, cartoleria e materiali creativi.",
     "icon": "📚",
     "note": "Ottimi prezzi",
+    "hours": "Lun-Sab 09:30–18:00 · Dom 12:00–18:00",
     "url": "https://www.vibesandscribes.ie/"
   },
   {
@@ -71,6 +76,7 @@
     "desc": "Castello sul Lee trasformato in osservatorio astronomico e centro scientifico interattivo. Raggiungibile con passeggiata lungo il fiume.",
     "icon": "🔭",
     "note": "Visite guidate",
+    "hours": "Lun-Ven 10:00–17:00 · Sab-Dom 11:00–18:00",
     "url": "https://www.bco.ie/"
   },
   {
@@ -80,6 +86,7 @@
     "desc": "Polo dello street food: decine di stand (coreano, italiano, ecc.) e atmosfera studentesca vibrante.",
     "icon": "🌮",
     "note": "Aperto tutti i giorni",
+    "hours": "Tutti i giorni ~11:00–22:00 (orari stand variabili)",
     "url": "https://www.marinamarket.ie/"
   },
   {
@@ -89,6 +96,7 @@
     "desc": "Piccolo parco urbano nel centro, perfetto per una pausa tra una visita e l'altra. Ingresso gratuito.",
     "icon": "🌳",
     "note": "Centro città",
+    "hours": "Tutti i giorni · parco urbano · ingresso gratuito",
     "url": "https://www.corkcity.ie/en/things-to-do/parks-outdoors/bishop-lucey-park/"
   }
 ]
