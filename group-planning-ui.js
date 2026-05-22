@@ -300,7 +300,7 @@ const ProgramUI = (() => {
               ${admin ? `<span>${statusLabel(item.status)}</span>` : ''}
             </div>
           </div>
-          <span class="proposal-badge">${admin ? statusLabel(item.status) : 'Scelto dagli admin'}</span>
+          <span class="proposal-badge">${admin ? statusLabel(item.status) : 'Scelto dai tutor'}</span>
         </div>
         ${item.description ? `<p class="text-sm text-gray-700 mt-2 leading-relaxed line-clamp-3">${esc(item.description)}</p>` : ''}
         ${place?.hours ? `<p class="text-xs text-gray-500 mt-1">🕐 ${esc(place.hours)}</p>` : ''}

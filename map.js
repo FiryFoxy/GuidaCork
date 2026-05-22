@@ -1,7 +1,7 @@
 // Mappa Leaflet — luoghi guida Cork
 const CATEGORY_META = {
   culture: { label: 'Cultura', color: '#588157', emoji: '🏛️' },
-  food: { label: 'Mangiare', color: '#D97757', emoji: '🍽️' },
+  food: { label: 'Ristoranti', color: '#D97757', emoji: '🍽️' },
   nightlife: { label: 'Pub', color: '#344E41', emoji: '🍻' },
   shopping: { label: 'Shopping', color: '#7A8B5E', emoji: '🛍️' },
   excursions: { label: 'Gite', color: '#3B6EA8', emoji: '🚂' }

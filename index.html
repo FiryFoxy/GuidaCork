@@ -39,6 +39,7 @@
     <script src="map.js"></script>
     <script src="planner-ui.js"></script>
     <script src="weather.js"></script>
+    <script src="vocabulary.js"></script>
     <script src="pwa.js"></script>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
@@ -236,7 +237,15 @@
         }
 
         function afterTabLoad(tabId) {
-            if (tabId === 'intro') initBudgetChart();
+            if (tabId === 'intro') {
+                initBudgetChart();
+                document.querySelectorAll('[data-goto-tab]').forEach(btn => {
+                    btn.onclick = () => switchTab(btn.dataset.gotoTab);
+                });
+            }
+            if (tabId === 'vocabulary') {
+                window.VocabUI?.init(document.getElementById('section-vocabulary'), { basePath: getBasePath() });
+            }
             if (['culture', 'food', 'nightlife', 'shopping', 'excursions'].includes(tabId)) {
                 bindSectionFilters(tabId);
                 renderContent(tabId);

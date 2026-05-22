@@ -6,10 +6,12 @@
     "end": "2026-08-12"
   },
   "tabs": [
-    { "id": "intro", "label": "Info & Trasporti", "shortLabel": "Info", "icon": "ℹ️" },
+    { "id": "intro", "label": "Home", "shortLabel": "Home", "icon": "🏠" },
     { "id": "weather", "label": "Meteo", "shortLabel": "Meteo", "icon": "🌤️" },
+    { "id": "vocabulary", "label": "Vocabolario", "shortLabel": "Lingua", "icon": "🗣️" },
     { "id": "culture", "label": "Cultura & Teatri", "shortLabel": "Cultura", "icon": "🏛️" },
-    { "id": "food", "label": "Mangiare", "shortLabel": "Mangiare", "icon": "🍽️" },
+    { "id": "food", "label": "Ristoranti", "shortLabel": "Ristoranti", "icon": "🍽️" },
+    { "id": "dishes", "label": "Piatti tradizionali", "shortLabel": "Piatti", "icon": "🥘" },
     { "id": "nightlife", "label": "Pub & Serate", "shortLabel": "Pub", "icon": "🍻" },
     { "id": "shopping", "label": "Shopping", "shortLabel": "Shop", "icon": "🛍️" },
     { "id": "excursions", "label": "Gite Fuori Porta", "shortLabel": "Gite", "icon": "🚂" },

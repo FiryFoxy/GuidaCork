@@ -66,10 +66,15 @@ supabase-client.js      # Connessione Supabase per utenti/proposte/voti
 group-planning-ui.js    # UI planning di gruppo
 map.js                  # Mappa Leaflet + filtri categoria
 weather.js              # Previsioni Open-Meteo + consigli stagione
+vocabulary.js           # Vocabolario: filtri + riproduzione audio
+scripts/generate-vocab-audio.py  # Rigenera MP3 pronuncia (edge-tts, voci en-IE / ga-IE)
+assets/audio/vocab/     # File audio pronuncia (generati dallo script)
 data/
   config.json           # Schede navigazione, date Erasmus, elenco file luoghi
   supabase-config.json  # Project URL e anon key pubblica Supabase
   coordinates.json      # Lat/lng per la mappa (chiave = id luogo)
+  vocabulary-phrases.json   # Frasi per generare l'audio
+  vocabulary-audio.json     # Manifest clip MP3
   places/
     culture.json        # Musei, teatri…
     food.json           # Ristoranti e cafè

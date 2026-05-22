@@ -1,11 +1,104 @@
 <section id="section-intro" class="section-content fade-in">
-    <div class="mb-8 text-center md:text-left">
-        <h2 class="text-3xl font-bold text-[#344E41] mb-4">Benvenuto nella Contea Ribelle!</h2>
-        <p class="text-lg leading-relaxed text-gray-700">
-            Questa guida ti accompagnerà dal <strong>11 luglio al 12 agosto 2026</strong> (circa 5 settimane) a Cork. Scopri come gestire il budget, 
-            come sfruttare al meglio la tua carta dei trasporti che ti verrà fornita direttamente sul posto, e inizia ad esplorare 
-            le schede tematiche per pianificare i tuoi pomeriggi e i fine settimana estivi.
+    <div class="home-hero">
+        <span class="home-hero-badge">Erasmus · Cork 2026</span>
+        <h2 class="home-hero-title">Benvenuto nella Contea Ribelle</h2>
+        <p class="home-hero-lead">
+            Guida interattiva dal <strong>11 luglio al 12 agosto 2026</strong>: luoghi, meteo, lingua, piatti tipici, mappa e planner per organizzare le tue 5 settimane.
         </p>
+        <div class="home-hero-actions">
+            <button type="button" class="home-hero-btn home-hero-btn--primary" data-goto-tab="map">🗺️ Mappa</button>
+            <button type="button" class="home-hero-btn" data-goto-tab="weather">🌤️ Meteo</button>
+            <button type="button" class="home-hero-btn" data-goto-tab="vocabulary">🗣️ Vocabolario</button>
+            <button type="button" class="home-hero-btn" data-goto-tab="planner">🗓️ Planner</button>
+        </div>
+    </div>
+
+    <div class="home-spotlight" aria-label="Accesso rapido">
+        <button type="button" class="home-spotlight-card" data-goto-tab="food">
+            <span class="home-spotlight-icon" aria-hidden="true">🍽️</span>
+            <span class="home-spotlight-label">Ristoranti</span>
+            <span class="home-spotlight-hint">Locali e market</span>
+        </button>
+        <button type="button" class="home-spotlight-card" data-goto-tab="dishes">
+            <span class="home-spotlight-icon" aria-hidden="true">🥘</span>
+            <span class="home-spotlight-label">Piatti tipici</span>
+            <span class="home-spotlight-hint">Cucina irlandese</span>
+        </button>
+        <button type="button" class="home-spotlight-card" data-goto-tab="nightlife">
+            <span class="home-spotlight-icon" aria-hidden="true">🍻</span>
+            <span class="home-spotlight-label">Pub & serate</span>
+            <span class="home-spotlight-hint">Craic e musica</span>
+        </button>
+        <button type="button" class="home-spotlight-card" data-goto-tab="excursions">
+            <span class="home-spotlight-icon" aria-hidden="true">🚂</span>
+            <span class="home-spotlight-label">Gite</span>
+            <span class="home-spotlight-hint">Fuori porta</span>
+        </button>
+    </div>
+
+    <div class="home-resources">
+        <div class="home-resource home-resource--program">
+            <h3 class="home-resource-title">✅ Programma ufficiale</h3>
+            <p class="home-resource-text">
+                Il piano Erasmus <strong>scelto dai tutor</strong>: agenda per giorno, calendario, mappa dei luoghi e schede con orari e dettagli delle attività.
+            </p>
+            <div class="home-resource-links">
+                <button type="button" class="home-resource-link home-resource-link--primary" data-goto-tab="program">Apri programma →</button>
+            </div>
+        </div>
+        <div class="home-resource">
+            <h3 class="home-resource-title">🇮🇪 Lingua & vocabolario</h3>
+            <p class="home-resource-text">
+                Saluti, trasporti, ristoranti, emergenze ed espressioni tipiche — in inglese irlandese e Gaeilge, con <strong>pronuncia audio registrata</strong> per ogni frase utile a Cork.
+            </p>
+            <div class="home-resource-links">
+                <button type="button" class="home-resource-link" data-goto-tab="vocabulary">Apri vocabolario →</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-info-grid mb-8">
+        <div class="home-info-card">
+            <h3 class="home-info-title">☘️ Cork in breve</h3>
+            <ul class="home-info-list">
+                <li><strong>Seconda città</strong> della Repubblica d'Irlanda (~210.000 abitanti nell'area urbana)</li>
+                <li><strong>Valuta:</strong> euro (€) — contactless ovunque</li>
+                <li><strong>Fuso orario:</strong> UTC+1 (come l'Italia in estate)</li>
+                <li><strong>Presa:</strong> tipo G (tre pin — porta un adattatore)</li>
+                <li><strong>Guida:</strong> a sinistra; attenzione alle rotatorie</li>
+            </ul>
+        </div>
+        <div class="home-info-card">
+            <h3 class="home-info-title">📱 App & servizi</h3>
+            <ul class="home-info-list">
+                <li><strong>TFI Live</strong> — orari bus in tempo reale</li>
+                <li><strong>Irish Rail</strong> — treni e biglietti per gite</li>
+                <li><strong>Google Maps / Citymapper</strong> — spostamenti a piedi e bus</li>
+                <li><strong>Revolut / banca app</strong> — pagamenti e cambio senza commissioni folli</li>
+                <li><strong>Met Éireann</strong> — previsioni ufficiali (o scheda Meteo in questa guida)</li>
+            </ul>
+        </div>
+        <div class="home-info-card home-info-card--alert">
+            <h3 class="home-info-title">🆘 Emergenze</h3>
+            <p class="home-info-lead">Salva questi numeri nel telefono appena arrivi:</p>
+            <ul class="home-info-list home-info-list--compact">
+                <li><strong>112</strong> — emergenza europea (unifica polizia, ambulanza, pompieri)</li>
+                <li><strong>999</strong> — emergenza in Irlanda (equivalente al 112)</li>
+                <li><strong>Ospedale:</strong> CUH (Cork University Hospital), Wilton</li>
+                <li><strong>Farmacia:</strong> cercare <em>Chemist</em> — molte con turno h24 in centro</li>
+            </ul>
+        </div>
+        <div class="home-info-card">
+            <h3 class="home-info-title">✈️ Prima di partire</h3>
+            <ul class="home-info-list home-info-checklist">
+                <li>Documento d'identità / passaporto e tessera Erasmus</li>
+                <li>Adattatore presa tipo G</li>
+                <li>Giacca impermeabile leggera (sempre utile)</li>
+                <li>Carta sanitaria EHIC / tessera TEAM (se hai)</li>
+                <li>Qualche euro contanti per il primo giorno</li>
+                <li>Scarica <strong>TFI Live</strong> e salva i contatti del coordinatore</li>
+            </ul>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -22,15 +115,19 @@
             <ul class="space-y-3">
                 <li class="flex items-start gap-2">
                     <span class="text-xl">🚍</span>
-                    <div><strong>Bus Éireann:</strong> I bus urbani coprono ottimamente la città. Le linee fondamentali sono il 205 (per l'University College Cork - UCC) e il 208. Scarica l'app "TFI Live" per gli orari in tempo reale.</div>
+                    <div><strong>Bus Éireann:</strong> Le linee <strong>205</strong> e <strong>208</strong> collegano il centro all'UCC. Tap della Leap Card sul lettore all'entrata.</div>
                 </li>
                 <li class="flex items-start gap-2">
                     <span class="text-xl">🚆</span>
-                    <div><strong>Treno (Irish Rail):</strong> Tutti i treni per le gite fuori porta partono dalla storica Kent Station, facilmente raggiungibile a piedi dal centro.</div>
+                    <div><strong>Kent Station:</strong> punto di partenza per gite (Dublino, Cobh, Killarney…). Dal centro si raggiunge a piedi in ~15 min.</div>
                 </li>
                 <li class="flex items-start gap-2">
                     <span class="text-xl">🚶</span>
-                    <div><strong>A piedi:</strong> Cork è incredibilmente a misura d'uomo. L'isola centrale, delimitata dai due canali del fiume Lee, si attraversa da parte a parte in soli 20 minuti di cammino.</div>
+                    <div><strong>Centro pedonale:</strong> Patrick Street, Oliver Plunkett Street e il Mercato English Market si visitano benissimo a piedi.</div>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-xl">🎓</span>
+                    <div><strong>UCC:</strong> campus a occidente del centro; in Erasmus è spesso la zona di lezioni e biblioteca.</div>
                 </li>
             </ul>
         </div>
@@ -43,13 +140,14 @@
                     <canvas id="budgetChart"></canvas>
                 </div>
             </div>
+            <p class="text-xs text-gray-500 mt-3 text-center">Spesa, gite e pub variano molto: usa il <strong>Planner</strong> per distribuire le uscite sulle 5 settimane.</p>
         </div>
     </div>
 
     <div class="mt-8 bg-[#E9EDC9] p-6 rounded-2xl border border-[#A3B18A]">
-        <h3 class="text-xl font-bold text-[#344E41] mb-2 flex items-center gap-2">☀️ Estate Irlandese (Luglio - Agosto)</h3>
-        <p class="text-gray-700">
-            Il meteo estivo a Cork è mite ma instabile (temperature tra 14°C e 21°C). Le giornate sono lunghissime: c'è luce fino alle 22:00 di sera! Ricordati di portare sempre un k-way o una giacca leggera impermeabile per le improvvise piogge passeggere ("liquid sunshine").
+        <h3 class="text-xl font-bold text-[#344E41] mb-2 flex items-center gap-2">☀️ Estate a Cork (luglio – agosto)</h3>
+        <p class="text-gray-700 text-sm leading-relaxed">
+            Temperature tipiche <strong>14–21°C</strong>, vento e piogge brevi ("liquid sunshine"). Giornate lunghissime: tramonto verso le <strong>22:00</strong>. Porta strati: t-shirt, felpa e k-way. La scheda <strong>Meteo</strong> aggiorna le previsioni durante il soggiorno — in <strong>Vocabolario</strong> trovi frasi utili con audio registrato (inglese irlandese e Gaeilge).
         </p>
     </div>
 </section>

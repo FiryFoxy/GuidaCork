@@ -1,4 +1,4 @@
-const CACHE_VERSION = '1';
+const CACHE_VERSION = '8';
 const CACHE_NAME = `cork-guide-${CACHE_VERSION}`;
 
 const PRECACHE = [
@@ -15,8 +15,10 @@ const PRECACHE = [
     'map.js',
     'planner-ui.js',
     'weather.js',
+    'vocabulary.js',
     'pwa.js',
     'data/config.json',
+    'data/vocabulary-audio.json',
     'data/coordinates.json',
     'data/weather-tips.json',
     'data/places/culture.json',
@@ -27,13 +29,24 @@ const PRECACHE = [
     'sections/intro.html',
     'sections/culture.html',
     'sections/food.html',
+    'sections/dishes.html',
+    'assets/images/dishes/irish-stew.jpg',
+    'assets/images/dishes/fish-and-chips.jpg',
+    'assets/images/dishes/seafood-chowder.jpg',
+    'assets/images/dishes/beef-guinness-pie.jpg',
+    'assets/images/dishes/full-irish-breakfast.jpg',
+    'assets/images/dishes/boxty.jpg',
+    'assets/images/dishes/colcannon.jpg',
+    'assets/images/dishes/bacon-and-cabbage.jpg',
+    'assets/images/dishes/soda-bread.jpg',
     'sections/nightlife.html',
     'sections/shopping.html',
     'sections/excursions.html',
     'sections/weather.html',
     'sections/map.html',
     'sections/planner.html',
-    'sections/program.html'
+    'sections/program.html',
+    'sections/vocabulary.html'
 ];
 
 function scopeUrl(path) {
