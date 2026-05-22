@@ -343,18 +343,9 @@ const PlannerUI = (() => {
         </div>
       </div>
 
-      <div class="group-planning-shell">
-        <div id="group-planning-root"></div>
-      </div>
     `;
 
     bindEvents({ ...ctx, onRefresh: () => render(ctx) });
-    window.GroupPlanningUI?.render(document.getElementById('group-planning-root'), {
-      places,
-      placeById,
-      dates,
-      formatDate: window.planner.formatDateIT
-    });
 
     if (state.view === 'map-mini') initMiniMap(ctx);
   }

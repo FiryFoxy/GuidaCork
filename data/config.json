@@ -14,6 +14,7 @@
     { "id": "shopping", "label": "Shopping", "icon": "🛍️" },
     { "id": "excursions", "label": "Gite Fuori Porta", "icon": "🚂" },
     { "id": "map", "label": "Mappa", "icon": "🗺️" },
+    { "id": "program", "label": "Programma", "icon": "✅" },
     { "id": "planner", "label": "Planner", "icon": "🗓️" }
   ],
   "placeFiles": ["culture", "food", "nightlife", "shopping", "excursions"]

@@ -104,6 +104,14 @@ const CorkSupabase = (() => {
     return data || [];
   }
 
+  async function listApprovedProgram() {
+    await init();
+    if (!client) return [];
+    const { data, error } = await db().rpc('list_approved_program');
+    if (error) throw error;
+    return data || [];
+  }
+
   async function saveProposal(input) {
     const row = {
       title: input.title,
@@ -111,7 +119,7 @@ const CorkSupabase = (() => {
       day_date: input.day_date,
       location: input.location || '',
       place_id: input.place_id || null,
-      status: 'open'
+      status: input.status || 'open'
     };
 
     if (input.id) {
@@ -156,6 +164,7 @@ const CorkSupabase = (() => {
     onAuthChange,
     profile,
     updateProfile,
+    listApprovedProgram,
     listProposals,
     saveProposal,
     vote,

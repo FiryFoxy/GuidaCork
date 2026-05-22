@@ -5,9 +5,10 @@ Guida interattiva per il soggiorno Erasmus a Cork (**11 luglio – 12 agosto 202
 ## Funzionalità
 
 - Schede per cultura, nightlife, shopping e gite fuori porta
+- Pagina **Programma** pubblica con i piani approvati dagli admin
 - Ricerca e filtro **preferiti** per ogni sezione
-- **Planner uscite** con date nel periodo Erasmus, export/import JSON
-- **Planning di gruppo** con utenti invitati, voti aggregati e approvazione admin
+- **Planner uscite** personale, salvato solo sul dispositivo, con export/import JSON
+- Accesso admin riservato alla gestione del programma ufficiale
 - Grafico budget mensile (Chart.js)
 - Link verificati ai siti ufficiali (Cork City Council, Discover Ireland, ecc.)
 
@@ -82,9 +83,10 @@ Campi utili per le gite: `transport`, `time`, `cost`. Salva e ricarica la pagina
 
 Per cambiare le date del planner, modifica `erasmus` in `data/config.json`.
 
-## Planning di gruppo con Supabase
+## Programma admin con Supabase
 
-Il sito resta statico, ma il planning condiviso usa Supabase per login, inviti, proposte, voti e approvazione finale.
+Il sito resta statico. Supabase serve solo agli admin per creare e approvare il programma ufficiale.
+Gli utenti normali non devono fare login: vedono la pagina **Programma** pubblica e usano il **Planner** personale salvato nel browser del dispositivo.
 
 1. Apri Supabase → SQL editor.
 2. Esegui tutto il file `database/supabase-schema.sql`.
@@ -92,6 +94,12 @@ Il sito resta statico, ma il planning condiviso usa Supabase per login, inviti, 
 4. Incollala in `data/supabase-config.json` nel campo `anonKey`.
 5. Crea gli utenti da Supabase Authentication con email e password.
 6. Assegna il ruolo nella tabella `profiles`.
+
+Se il database era già stato installato prima della pagina Programma, esegui anche:
+
+```sql
+database/patch-public-approved-program.sql
+```
 
 Per creare un utente senza inviare email:
 
@@ -116,6 +124,8 @@ update public.profiles
 set role = 'user', status = 'active', display_name = 'Nome Utente'
 where email = 'utente@email.it';
 ```
+
+Per il nuovo flusso servono solo account `admin`. Gli account `user` esistenti non possono accedere al pannello Programma.
 
 Se la riga in `profiles` non esiste, inseriscila partendo dall'utente creato in Authentication:
 

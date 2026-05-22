@@ -270,7 +270,6 @@
 
         .empty-state { text-align: center; padding: 2.5rem 1rem; background: #fff; border-radius: 1rem; border: 1px dashed #A3B18A; color: #588157; }
 
-        .group-planning-shell { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #E9EDC9; }
         .group-panel { background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 1rem; box-shadow: 0 1px 3px rgba(52,78,65,.06); }
         .group-panel-title { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 700; color: #344E41; }
         .group-userbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1rem; }
@@ -400,7 +399,7 @@
 
         async function loadAppData() {
             const base = getBasePath();
-            const configRes = await fetch(`${base}data/config.json`);
+            const configRes = await fetch(`${base}data/config.json`, { cache: 'no-store' });
             if (!configRes.ok) throw new Error('config.json');
             const config = await configRes.json();
             appData.config = config;
@@ -409,7 +408,7 @@
             const files = config.placeFiles || [];
             const placesArrays = await Promise.all(
                 files.map(async (name) => {
-                    const res = await fetch(`${base}data/places/${name}.json`);
+                    const res = await fetch(`${base}data/places/${name}.json`, { cache: 'no-store' });
                     if (!res.ok) throw new Error(`places/${name}.json`);
                     return res.json();
                 })
@@ -417,7 +416,7 @@
             appData.places = placesArrays.flat();
 
             try {
-                const coordsRes = await fetch(`${base}data/coordinates.json`);
+                const coordsRes = await fetch(`${base}data/coordinates.json`, { cache: 'no-store' });
                 if (coordsRes.ok) {
                     const coords = await coordsRes.json();
                     appData.places = appData.places.map(p => {
@@ -523,6 +522,7 @@
         async function switchTab(tabId) {
             if (currentTab === 'map') window.CorkMap?.destroyCorkMap();
             if (currentTab === 'planner') window.PlannerUI?.destroy();
+            if (currentTab === 'program') window.ProgramUI?.destroy();
             currentTab = tabId;
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -532,7 +532,7 @@
             mainContent.innerHTML = '<div class="text-center text-gray-400 py-8">Caricamento...</div>';
             try {
                 const base = getBasePath();
-                const resp = await fetch(`${base}sections/${tabId}.html`);
+                const resp = await fetch(`${base}sections/${tabId}.html`, { cache: 'no-store' });
                 if (!resp.ok) throw new Error('HTTP ' + resp.status);
                 mainContent.innerHTML = await resp.text();
                 afterTabLoad(tabId);
@@ -559,6 +559,14 @@
                 window.PlannerUI.render({
                     places: appData.places,
                     placeById
+                });
+            }
+            if (tabId === 'program') {
+                window.ProgramUI?.render(document.getElementById('program-root'), {
+                    places: appData.places,
+                    placeById,
+                    dates: window.planner.getDateRange(),
+                    formatDate: window.planner.formatDateIT
                 });
             }
         }
