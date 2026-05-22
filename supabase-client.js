@@ -151,6 +151,20 @@ const CorkSupabase = (() => {
     if (error) throw error;
   }
 
+  async function deleteProposal(proposalId) {
+    const { error: approvedError } = await db()
+      .from('approved_plannings')
+      .delete()
+      .eq('proposal_id', proposalId);
+    if (approvedError) throw approvedError;
+
+    const { error } = await db()
+      .from('planning_proposals')
+      .update({ status: 'archived' })
+      .eq('id', proposalId);
+    if (error) throw error;
+  }
+
   async function invite(email, role) {
     const { error } = await db().from('invites').insert({ email, role });
     if (error) throw error;
@@ -169,6 +183,7 @@ const CorkSupabase = (() => {
     saveProposal,
     vote,
     approveProposal,
+    deleteProposal,
     invite,
     get state() { return configState; }
   };

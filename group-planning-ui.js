@@ -8,6 +8,7 @@ const ProgramUI = (() => {
     proposals: [],
     editing: null,
     adminOpen: false,
+    adminFilter: 'all',
     view: 'agenda',
     selectedDay: null,
     focusPlaceId: null
@@ -74,7 +75,7 @@ const ProgramUI = (() => {
         state.session = null;
         state.profile = null;
         state.proposals = [];
-        state.message = 'Accesso riservato agli admin.';
+        state.message = 'Accesso riservato ai tutor.';
       } else {
         state.proposals = state.profile?.role === 'admin'
           ? await window.CorkSupabase.listProposals()
@@ -156,7 +157,7 @@ const ProgramUI = (() => {
       return `
         <div class="group-empty mt-4">
           <h3 class="group-panel-title mb-2">Nessun programma approvato</h3>
-          <p class="text-sm">Appena un admin approva un piano, comparirà qui con calendario e mappa.</p>
+          <p class="text-sm">Appena un tutor pubblica un'attività, comparirà qui con calendario e mappa.</p>
         </div>
       `;
     }
@@ -403,6 +404,16 @@ const ProgramUI = (() => {
     `;
   }
 
+  function adminStats() {
+    const proposals = state.proposals.filter(item => item.status !== 'archived');
+    return {
+      total: proposals.length,
+      drafts: proposals.filter(item => item.status === 'open').length,
+      approved: proposals.filter(item => item.status === 'approved').length,
+      published: state.approved.length
+    };
+  }
+
   function renderAdminBox(ctx) {
     const expanded = state.adminOpen || state.profile?.role === 'admin';
 
@@ -431,32 +442,120 @@ const ProgramUI = (() => {
         </div>
         ${state.message ? `<p class="program-admin-msg program-admin-msg--block">${esc(state.message)}</p>` : ''}
         <form id="program-login-form" class="program-admin-form">
-          <label class="field-label">Email</label>
-          <input type="email" id="program-login-email" required class="field-input" placeholder="admin@email.it">
-          <label class="field-label">Password</label>
-          <input type="password" id="program-login-password" required minlength="6" class="field-input" placeholder="Password">
+          <label class="field-label" for="program-login-email">Email</label>
+          <input type="email" id="program-login-email" required class="field-input" placeholder="tutor@email.it" autocomplete="username">
+          <label class="field-label" for="program-login-password">Password</label>
+          <input type="password" id="program-login-password" required minlength="6" class="field-input" placeholder="Password" autocomplete="current-password">
           <button type="submit" class="btn-primary mt-3 w-full sm:w-auto">Accedi</button>
         </form>
       </div>
     `;
   }
 
-  function renderAdminArea(ctx) {
-    const open = state.proposals.filter(item => item.status !== 'archived');
+  function renderAdminFilterTabs() {
+    const stats = adminStats();
+    const tabs = [
+      { id: 'all', label: 'Tutti', count: stats.total },
+      { id: 'open', label: 'Bozze', count: stats.drafts },
+      { id: 'approved', label: 'Approvati', count: stats.approved }
+    ];
     return `
-      <div class="program-admin-panel">
-        <div class="program-admin-panel-head">
-          <p class="program-admin-panel-title">Pannello admin · ${esc(state.profile.display_name || state.profile.email)}</p>
-          <button type="button" id="program-signout" class="program-admin-link">Esci</button>
+      <div class="program-admin-filters" role="tablist" aria-label="Filtra piani">
+        ${tabs.map(tab => `
+          <button type="button" data-admin-filter="${tab.id}" class="program-admin-filter ${state.adminFilter === tab.id ? 'program-admin-filter--active' : ''}" role="tab" aria-selected="${state.adminFilter === tab.id}">
+            ${tab.label}${tab.count ? `<span class="program-admin-filter-count">${tab.count}</span>` : ''}
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function filteredProposals() {
+    const items = state.proposals.filter(item => item.status !== 'archived');
+    if (state.adminFilter === 'open') return items.filter(item => item.status === 'open');
+    if (state.adminFilter === 'approved') return items.filter(item => item.status === 'approved');
+    return items;
+  }
+
+  function renderAdminArea(ctx) {
+    const stats = adminStats();
+    const list = filteredProposals();
+    const name = state.profile.display_name || state.profile.email || 'Tutor';
+    const initial = name.trim().charAt(0).toUpperCase() || 'T';
+
+    return `
+      <div class="program-admin-shell">
+        <div class="program-admin-header">
+          <div class="program-admin-user">
+            <span class="program-admin-avatar" aria-hidden="true">${esc(initial)}</span>
+            <div>
+              <p class="program-admin-name">${esc(name)}</p>
+              <span class="program-admin-role">Tutor · gestione programma</span>
+            </div>
+          </div>
+          <button type="button" id="program-signout" class="program-admin-btn-ghost">Esci</button>
         </div>
-        ${renderProposalForm(ctx)}
-        <div class="mt-4">
-          <h4 class="program-admin-panel-title">Bozze e piani</h4>
-          <div class="space-y-3 mt-3">
-            ${open.length ? open.map(item => renderProgramCard(item, ctx, true)).join('') : '<div class="group-empty">Nessun piano creato.</div>'}
+
+        <div class="program-admin-kpis">
+          <div class="program-admin-kpi">
+            <span class="program-admin-kpi-num">${stats.drafts}</span>
+            <span class="program-admin-kpi-label">Bozze</span>
+          </div>
+          <div class="program-admin-kpi program-admin-kpi--accent">
+            <span class="program-admin-kpi-num">${stats.approved}</span>
+            <span class="program-admin-kpi-label">Approvati</span>
+          </div>
+          <div class="program-admin-kpi">
+            <span class="program-admin-kpi-num">${stats.published}</span>
+            <span class="program-admin-kpi-label">In programma</span>
           </div>
         </div>
+
+        <div class="program-admin-layout">
+          <section class="program-admin-form-col" aria-labelledby="program-admin-form-title">
+            <h4 id="program-admin-form-title" class="program-admin-section-title">${state.editing ? 'Modifica attività' : 'Nuova attività'}</h4>
+            ${renderProposalForm(ctx)}
+          </section>
+          <section class="program-admin-list-col" aria-labelledby="program-admin-list-title">
+            <div class="program-admin-list-head">
+              <h4 id="program-admin-list-title" class="program-admin-section-title">Piani e bozze</h4>
+              ${state.editing ? '<button type="button" id="program-new-plan" class="program-admin-btn-ghost">+ Nuovo</button>' : ''}
+            </div>
+            ${renderAdminFilterTabs()}
+            <div class="program-admin-list space-y-3">
+              ${list.length
+                ? list.map(item => renderAdminProposalCard(item, ctx)).join('')
+                : '<div class="group-empty">Nessun piano in questa categoria. Crea una nuova attività a sinistra.</div>'}
+            </div>
+          </section>
+        </div>
       </div>
+    `;
+  }
+
+  function renderAdminProposalCard(item, ctx) {
+    const place = item.place_id ? ctx.placeById(item.place_id) : null;
+    const loc = item.location || place?.location || '';
+    const isApproved = item.status === 'approved';
+    return `
+      <article class="program-admin-item ${isApproved ? 'program-admin-item--approved' : ''}">
+        <div class="program-admin-item-main">
+          <div class="program-admin-item-top">
+            <h5 class="program-admin-item-title">${place?.icon ? esc(place.icon) + ' ' : ''}${esc(item.title)}</h5>
+            <span class="program-admin-status program-admin-status--${esc(item.status)}">${statusLabel(item.status)}</span>
+          </div>
+          <p class="program-admin-item-meta">
+            <span>📅 ${ctx.formatDate(item.day_date)}</span>
+            ${loc ? `<span>📍 ${esc(loc)}</span>` : ''}
+          </p>
+          ${item.description ? `<p class="program-admin-item-desc">${esc(item.description)}</p>` : ''}
+        </div>
+        <div class="program-admin-item-actions">
+          <button type="button" data-program-edit="${item.id}" class="program-admin-action">Modifica</button>
+          ${!isApproved ? `<button type="button" data-program-approve="${item.id}" class="program-admin-action program-admin-action--primary">Pubblica</button>` : '<span class="program-admin-published">✓ Nel programma</span>'}
+          <button type="button" data-program-delete="${item.id}" class="program-admin-action program-admin-action--danger">Elimina</button>
+        </div>
+      </article>
     `;
   }
 
@@ -465,25 +564,34 @@ const ProgramUI = (() => {
     const dates = ctx.dates.map(d => `<option value="${d}" ${edit?.day_date === d ? 'selected' : ''}>${ctx.formatDate(d)}</option>`).join('');
     const placeOptions = ctx.places.map(place => `<option value="${esc(place.id)}" ${edit?.place_id === place.id ? 'selected' : ''}>${esc(place.icon)} ${esc(place.title)}</option>`).join('');
     return `
-      <form id="program-proposal-form" class="program-admin-form mt-4">
-        <h4 class="program-admin-panel-title">${edit ? 'Modifica piano' : 'Nuovo piano'}</h4>
+      <form id="program-proposal-form" class="program-admin-form">
         <input type="hidden" id="program-proposal-id" value="${esc(edit?.id || '')}">
         <input type="hidden" id="program-proposal-status" value="${esc(edit?.status || 'open')}">
-        <label class="field-label">Titolo</label>
-        <input type="text" id="program-title" required class="field-input" value="${esc(edit?.title || '')}" placeholder="Es. Kinsale + cena in centro">
-        <label class="field-label">Data</label>
-        <select id="program-date" required class="field-input">${dates}</select>
-        <label class="field-label">Luogo dalla guida</label>
-        <select id="program-place" class="field-input">
-          <option value="">Personalizzato</option>
-          ${placeOptions}
-        </select>
-        <label class="field-label">Luogo libero</label>
-        <input type="text" id="program-location" class="field-input" value="${esc(edit?.location || '')}" placeholder="Nome luogo o ritrovo">
-        <label class="field-label">Descrizione</label>
-        <textarea id="program-description" rows="4" class="field-input" placeholder="Orari, costi, idea della giornata...">${esc(edit?.description || '')}</textarea>
-        <div class="flex flex-wrap gap-2 mt-3">
-          <button type="submit" class="btn-primary">${edit ? 'Salva' : 'Crea piano'}</button>
+        <div class="program-admin-field">
+          <label class="field-label" for="program-title">Titolo attività</label>
+          <input type="text" id="program-title" required class="field-input" value="${esc(edit?.title || '')}" placeholder="Es. Gita a Kinsale">
+        </div>
+        <div class="program-admin-field">
+          <label class="field-label" for="program-date">Data</label>
+          <select id="program-date" required class="field-input">${dates}</select>
+        </div>
+        <div class="program-admin-field">
+          <label class="field-label" for="program-place">Luogo dalla guida</label>
+          <select id="program-place" class="field-input">
+            <option value="">— Personalizzato —</option>
+            ${placeOptions}
+          </select>
+        </div>
+        <div class="program-admin-field">
+          <label class="field-label" for="program-location">Luogo / ritrovo</label>
+          <input type="text" id="program-location" class="field-input" value="${esc(edit?.location || '')}" placeholder="Es. Kent Station, ore 9:00">
+        </div>
+        <div class="program-admin-field">
+          <label class="field-label" for="program-description">Descrizione</label>
+          <textarea id="program-description" rows="4" class="field-input" placeholder="Orari, costi, cosa portare…">${esc(edit?.description || '')}</textarea>
+        </div>
+        <div class="program-admin-form-actions">
+          <button type="submit" class="btn-primary program-admin-submit">${edit ? 'Salva modifiche' : 'Crea bozza'}</button>
           ${edit ? '<button type="button" id="program-cancel-edit" class="btn-secondary">Annulla</button>' : ''}
         </div>
       </form>
@@ -552,7 +660,7 @@ const ProgramUI = (() => {
         const profile = await window.CorkSupabase.profile();
         if (profile?.role !== 'admin' || profile?.status !== 'active') {
           await window.CorkSupabase.signOut();
-          throw new Error('Accesso riservato agli admin.');
+          throw new Error('Accesso riservato ai tutor.');
         }
         state.message = '';
       });
@@ -586,6 +694,19 @@ const ProgramUI = (() => {
       render(root, ctx, false);
     });
 
+    root.querySelector('#program-new-plan')?.addEventListener('click', () => {
+      state.editing = null;
+      render(root, ctx, false);
+      root.querySelector('#program-proposal-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    root.querySelectorAll('[data-admin-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.adminFilter = btn.dataset.adminFilter;
+        render(root, ctx, false);
+      });
+    });
+
     root.querySelectorAll('[data-program-edit]').forEach(btn => {
       btn.addEventListener('click', () => {
         state.editing = state.proposals.find(item => item.id === btn.dataset.programEdit) || null;
@@ -596,10 +717,25 @@ const ProgramUI = (() => {
 
     root.querySelectorAll('[data-program-approve]').forEach(btn => {
       btn.addEventListener('click', async () => {
-        if (!confirm('Aggiungere questo piano al programma ufficiale?')) return;
+        if (!confirm('Pubblicare questa attività nel programma ufficiale visibile a tutti?')) return;
         await run(root, ctx, async () => {
           await window.CorkSupabase.approveProposal(btn.dataset.programApprove);
           window.App?.showToast?.('Programma aggiornato');
+        });
+      });
+    });
+
+    root.querySelectorAll('[data-program-delete]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const item = state.proposals.find(i => i.id === btn.dataset.programDelete);
+        const msg = item?.status === 'approved'
+          ? 'Eliminare questa attività dal programma ufficiale? Non sarà più visibile agli studenti.'
+          : 'Eliminare questa attività?';
+        if (!confirm(msg)) return;
+        await run(root, ctx, async () => {
+          await window.CorkSupabase.deleteProposal(btn.dataset.programDelete);
+          if (state.editing?.id === btn.dataset.programDelete) state.editing = null;
+          window.App?.showToast?.('Attività eliminata');
         });
       });
     });
