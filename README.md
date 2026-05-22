@@ -43,6 +43,7 @@ Poi apri `http://localhost:3000` (o la porta indicata).
 
 ```
 index.html              # App principale (carica i JSON all'avvio)
+assets/main.css         # Stili custom (componenti, header, planner, meteo…)
 planner.js              # Logica planner + preferiti (localStorage)
 planner-ui.js           # Interfaccia planner (agenda, calendario, mini-mappa)
 supabase-client.js      # Connessione Supabase per utenti/proposte/voti
@@ -85,6 +86,8 @@ Apri il file JSON della categoria che ti interessa (es. `data/places/food.json`)
 Campi utili per le gite: `transport`, `time`, `cost`. Salva e ricarica la pagina in Live Server.
 
 Per cambiare le date del planner, modifica `erasmus` in `data/config.json`.
+
+Per modificare colori, header, card e componenti custom, edita `assets/main.css`. Layout e spaziature usano classi [Tailwind](https://tailwindcss.com) nel markup (`sections/*.html` e template JS).
 
 ## Programma admin con Supabase
 
