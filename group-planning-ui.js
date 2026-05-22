@@ -105,7 +105,7 @@ const GroupPlanningUI = (() => {
     return `
       <div class="group-panel max-w-xl">
         <h3 class="group-panel-title">Planning di gruppo</h3>
-        <p class="text-sm text-gray-600 mt-2">Entra con l'email invitata e una password per proporre giornate e votare in forma aggregata.</p>
+        <p class="text-sm text-gray-600 mt-2">Entra con l'email e la password impostate in Supabase.</p>
         ${state.message ? `<p class="text-sm text-red-600 mt-2">${esc(state.message)}</p>` : ''}
         <form id="group-login-form" class="mt-4">
           <label class="field-label">Email</label>
@@ -113,8 +113,7 @@ const GroupPlanningUI = (() => {
           <label class="field-label">Password</label>
           <input type="password" id="group-login-password" required minlength="6" class="field-input" placeholder="Minimo 6 caratteri">
           <button type="submit" class="btn-primary mt-3">Accedi</button>
-          <button type="button" id="group-magic-link" class="btn-secondary mt-3 ml-2">Ricevi link email</button>
-          <p class="text-xs text-gray-500 mt-2">Al primo accesso, se l'email e invitata, viene creato l'account.</p>
+          <p class="text-xs text-gray-500 mt-2">Gli account si creano da Supabase, senza inviare email dal sito.</p>
         </form>
       </div>
     `;
@@ -212,7 +211,7 @@ const GroupPlanningUI = (() => {
           <option value="admin">Admin</option>
         </select>
         <button type="submit" class="btn-secondary mt-3">Aggiungi invito</button>
-        <p class="text-xs text-gray-500 mt-2">L'invitato potra accedere con email e password dalla schermata qui sopra.</p>
+        <p class="text-xs text-gray-500 mt-2">Crea anche l'utente in Supabase Authentication con la stessa email e password.</p>
       </form>
     `;
   }
@@ -285,20 +284,11 @@ const GroupPlanningUI = (() => {
     root.querySelector('#group-login-form')?.addEventListener('submit', async e => {
       e.preventDefault();
       await run(root, ctx, async () => {
-        const result = await window.CorkSupabase.signInWithPassword(
+        await window.CorkSupabase.signInWithPassword(
           root.querySelector('#group-login-email').value.trim(),
           root.querySelector('#group-login-password').value
         );
-        state.message = result === 'confirmation-sent'
-          ? "Account creato: controlla la tua email per confermare l'accesso."
-          : '';
-      });
-    });
-
-    root.querySelector('#group-magic-link')?.addEventListener('click', async () => {
-      await run(root, ctx, async () => {
-        await window.CorkSupabase.signIn(root.querySelector('#group-login-email').value.trim());
-        state.message = 'Controlla la tua email: ti abbiamo inviato il link di accesso.';
+        state.message = '';
       });
     });
 

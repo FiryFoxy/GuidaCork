@@ -46,33 +46,10 @@ const CorkSupabase = (() => {
     return data.session || null;
   }
 
-  async function signIn(email) {
-    await init();
-    const redirectTo = window.location.href.split('#')[0];
-    const { error } = await db().auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: redirectTo }
-    });
-    if (error) throw error;
-  }
-
   async function signInWithPassword(email, password) {
     await init();
-    const login = await db().auth.signInWithPassword({ email, password });
-    if (!login.error) return 'signed-in';
-
-    const message = (login.error.message || '').toLowerCase();
-    const canCreate = message.includes('invalid login') || message.includes('invalid credentials');
-    if (!canCreate) throw login.error;
-
-    const redirectTo = window.location.href.split('#')[0];
-    const signup = await db().auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: redirectTo }
-    });
-    if (signup.error) throw signup.error;
-    return signup.data.session ? 'signed-in' : 'confirmation-sent';
+    const { error } = await db().auth.signInWithPassword({ email, password });
+    if (error) throw error;
   }
 
   async function signOut() {
@@ -174,7 +151,6 @@ const CorkSupabase = (() => {
   return {
     init,
     session,
-    signIn,
     signInWithPassword,
     signOut,
     onAuthChange,

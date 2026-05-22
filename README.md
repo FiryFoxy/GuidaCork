@@ -90,22 +90,53 @@ Il sito resta statico, ma il planning condiviso usa Supabase per login, inviti, 
 2. Esegui tutto il file `database/supabase-schema.sql`.
 3. In Supabase → Project Settings → API copia la publishable key pubblica.
 4. Incollala in `data/supabase-config.json` nel campo `anonKey`.
-5. Crea il primo admin dal database dopo il primo accesso, oppure inserisci manualmente un invito admin nella tabella `invites`.
+5. Crea gli utenti da Supabase Authentication con email e password.
+6. Assegna il ruolo nella tabella `profiles`.
 
-Esempio per pre-invitare un admin dal SQL editor:
+Per creare un utente senza inviare email:
+
+1. Vai su Supabase → Authentication → Users.
+2. Clicca Add user.
+3. Inserisci email e password.
+4. Attiva Auto Confirm User.
+5. Salva.
+
+Poi assegna o correggi il profilo da SQL Editor:
 
 ```sql
-insert into public.invites (email, role)
-values ('admin@email.it', 'admin');
+update public.profiles
+set role = 'admin', status = 'active', display_name = 'Nome Admin'
+where email = 'admin@email.it';
 ```
 
-Se preferisci accesso con password, invita prima l'email: al primo accesso il sito crea l'account Supabase solo per quell'email invitata. Il magic link resta disponibile come alternativa.
+Per un utente normale:
+
+```sql
+update public.profiles
+set role = 'user', status = 'active', display_name = 'Nome Utente'
+where email = 'utente@email.it';
+```
+
+Se la riga in `profiles` non esiste, inseriscila partendo dall'utente creato in Authentication:
+
+```sql
+insert into public.profiles (id, email, display_name, role, status)
+select id, email, 'Nome Utente', 'user', 'active'
+from auth.users
+where email = 'utente@email.it'
+on conflict (id) do update
+set display_name = excluded.display_name,
+    role = excluded.role,
+    status = excluded.status;
+```
 
 Se creando una proposta compare l'errore `new row violates row-level security policy for table "proposal_versions"`, esegui in SQL Editor il file `database/patch-proposal-versions-rls.sql`.
 
+Se modificando `profiles.role` o `profiles.status` da SQL Editor compare `Solo un admin puo modificare ruolo o stato`, esegui in SQL Editor il file `database/patch-profile-role-sql-editor.sql`.
+
 Regole implementate:
 
-- Solo chi ha un invito attivo ottiene un profilo `active`.
+- Solo chi ha un profilo `active` puo usare il planning di gruppo.
 - I voti sono visibili nel sito solo come conteggi aggregati.
 - Ogni modifica importante a una proposta crea una nuova versione.
 - Dopo una modifica, i voti precedenti restano nello storico e gli utenti devono votare la versione corrente.

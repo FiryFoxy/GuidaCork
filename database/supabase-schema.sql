@@ -160,6 +160,10 @@ security definer
 set search_path = public
 as $$
 begin
+  if auth.uid() is null then
+    return new;
+  end if;
+
   if not public.is_admin(auth.uid()) and (new.role is distinct from old.role or new.status is distinct from old.status) then
     raise exception 'Solo un admin puo modificare ruolo o stato.';
   end if;
