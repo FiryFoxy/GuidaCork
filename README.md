@@ -57,6 +57,7 @@ Poi apri `http://localhost:3000` (o la porta indicata).
 index.html              # App principale (carica i JSON all'avvio)
 assets/main.css         # Stili custom (componenti, header, planner, meteo…)
 assets/site.webmanifest # Manifest PWA (nome, colori, icone)
+scripts/generate-pwa-icons.swift  # Rigenera PNG con emoji ☘️ (macOS)
 sw.js                   # Service worker (cache offline)
 pwa.js                  # Registrazione SW + suggerimento installazione
 planner.js              # Logica planner + preferiti (localStorage)
