@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cork Erasmus: Guida di Sopravvivenza e Scoperta</title>
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -70,8 +71,33 @@
         .site-brand {
             flex-shrink: 0;
             min-width: 0;
-            max-width: 11rem;
+            max-width: 14rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: inherit;
         }
+        .site-brand:hover .site-logo-emoji { transform: scale(1.06); }
+        .site-logo-emoji {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            flex-shrink: 0;
+            font-size: 1.65rem;
+            line-height: 1;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(163, 177, 138, 0.45);
+            border-radius: 0.55rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease;
+        }
+        @media (min-width: 768px) {
+            .site-logo-emoji { width: 2.75rem; height: 2.75rem; font-size: 1.85rem; }
+        }
+        .site-brand-text { min-width: 0; }
         @media (min-width: 640px) {
             .site-brand { max-width: 16rem; }
         }
@@ -308,10 +334,13 @@
 
     <header class="site-header text-[#FAF8F5] sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-3 sm:px-4 site-header-inner">
-            <div class="site-brand">
-                <h1 class="site-brand-title">☘️ Erasmus a Cork</h1>
-                <p id="app-subtitle" class="site-brand-dates">Caricamento…</p>
-            </div>
+            <a href="#" class="site-brand" id="site-brand-home" aria-label="Erasmus a Cork — Home">
+                <span class="site-logo-emoji" aria-hidden="true">☘️</span>
+                <div class="site-brand-text">
+                    <h1 class="site-brand-title">Erasmus a Cork</h1>
+                    <p id="app-subtitle" class="site-brand-dates">Caricamento…</p>
+                </div>
+            </a>
             <nav id="main-nav" aria-label="Sezioni guida"></nav>
         </div>
     </header>
@@ -406,6 +435,10 @@
 
         function initApp() {
             renderNavigation();
+            document.getElementById('site-brand-home')?.addEventListener('click', e => {
+                e.preventDefault();
+                switchTab('intro');
+            });
             switchTab('intro');
         }
 
