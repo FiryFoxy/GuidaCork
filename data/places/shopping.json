@@ -98,5 +98,55 @@
     "note": "Centro città",
     "hours": "Tutti i giorni · parco urbano · ingresso gratuito",
     "url": "https://www.corkcity.ie/en/things-to-do/parks-outdoors/bishop-lucey-park/"
+  },
+  {
+    "id": "shop-operalane",
+    "category": "shopping",
+    "title": "Opera Lane",
+    "desc": "Strada pedonale dello shopping in pieno centro, comoda per moda, beauty e catene internazionali tra Patrick Street e l'Opera House.",
+    "icon": "🛍️",
+    "note": "Moda in centro",
+    "hours": "Orari variabili per negozio · controlla il sito",
+    "url": "https://operalane.ie/"
+  },
+  {
+    "id": "shop-mahonpoint",
+    "category": "shopping",
+    "title": "Mahon Point Shopping Centre",
+    "desc": "Uno dei centri commerciali più grandi della zona, con negozi di moda, elettronica, cinema e ristorazione. Utile nei giorni di pioggia.",
+    "icon": "🏢",
+    "note": "Grande shopping centre",
+    "hours": "Lun-Mer/Sab 09:30–19:00 · Gio-Ven 09:30–21:00 · Dom 11:00–18:00",
+    "url": "https://mahonpointsc.ie/"
+  },
+  {
+    "id": "shop-brownthomas",
+    "category": "shopping",
+    "title": "Brown Thomas Cork",
+    "desc": "Department store elegante su Patrick Street per moda, beauty, accessori e idee regalo più raffinate.",
+    "icon": "👜",
+    "note": "Department store",
+    "hours": "Orari variabili · controlla la pagina Cork prima di andare",
+    "url": "https://www.brownthomas.com/store/?StoreID=2"
+  },
+  {
+    "id": "shop-nanonagle",
+    "category": "shopping",
+    "title": "Nano Nagle Place Gift & Design Shop",
+    "desc": "Piccolo shop curato con artigianato irlandese, design, cartoleria e regali facili da mettere in valigia.",
+    "icon": "🎁",
+    "note": "Regali artigianali",
+    "hours": "Aperto negli orari del complesso · verifica online",
+    "url": "https://nanonagleplace.ie/gift-design-shop/"
+  },
+  {
+    "id": "shop-douglasvillage",
+    "category": "shopping",
+    "title": "Douglas Village Shopping Centre",
+    "desc": "Centro commerciale di quartiere con supermercato, farmacie, libri, abbigliamento e caffè; pratico se sei a sud della città.",
+    "icon": "🛒",
+    "note": "Shopping quotidiano",
+    "hours": "Centro 08:00–22:00 · orari dei negozi variabili",
+    "url": "https://www.douglasvillage.ie/"
   }
 ]

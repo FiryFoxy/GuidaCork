@@ -118,5 +118,55 @@
     "highlight": "Live Indie & Folk",
     "hours": "Bar lun-sab 17:00–23:30 · concerti serali (calendario online)",
     "url": "https://coughlanslive.com/"
+  },
+  {
+    "id": "night-bierhaus",
+    "category": "nightlife",
+    "title": "The Bierhaus",
+    "desc": "Bar sul North Mall per chi vuole provare birre artigianali locali e internazionali: rotazione ampia di spine, bottiglie e lattine.",
+    "icon": "🍻",
+    "highlight": "Craft Beer",
+    "hours": "Lun-Gio 15:00–23:30 · Ven 15:00–00:30 · Sab 13:00–00:30 · Dom 13:00–23:00",
+    "url": "https://www.thebierhauscork.com/"
+  },
+  {
+    "id": "night-costigans",
+    "category": "nightlife",
+    "title": "Costigan's Pub",
+    "desc": "Pub tradizionale su Washington Street con snug, camino, beer garden riscaldato e buona selezione di whiskey e gin.",
+    "icon": "🥃",
+    "highlight": "Traditional Pub",
+    "hours": "Lun-Gio 14:00–23:30 · Ven-Sab 14:00–00:30 · Dom 14:00–23:00",
+    "url": "https://www.costiganspub.ie/"
+  },
+  {
+    "id": "night-vicarstown",
+    "category": "nightlife",
+    "title": "The Vicarstown Bar",
+    "desc": "Locale vivace su North Main Street, con beer garden, cocktail, craft beer e tacos: buono per iniziare la serata in gruppo.",
+    "icon": "🌮",
+    "highlight": "Beer Garden & Tacos",
+    "hours": "Lun-Mer 16:00–23:30 · Gio-Sab fino a tardi · Dom 15:00–23:30",
+    "url": "https://corkheritagepubs.com/pub/the-vicarstown/"
+  },
+  {
+    "id": "night-roundy",
+    "category": "nightlife",
+    "title": "The Roundy",
+    "desc": "Bar e piccolo spazio eventi in Castle Street: caffè di giorno, pint e serate di comedy, DJ set o musica dal vivo al piano superiore.",
+    "icon": "🎭",
+    "highlight": "Comedy & DJ Set",
+    "hours": "Lun-Gio 11:00–23:30 · Ven 11:00–00:30 · Sab 10:00–00:30 · Dom 12:30–23:00",
+    "url": "https://www.theroundy.com/"
+  },
+  {
+    "id": "night-hib",
+    "category": "nightlife",
+    "title": "The Hi-B",
+    "desc": "Minuscolo pub sopra Oliver Plunkett Street, famoso per l'atmosfera diretta e vecchio stile. Da provare se cerchi qualcosa di molto corkonian.",
+    "icon": "🪑",
+    "highlight": "Piccolo Cult Pub",
+    "hours": "Orari variabili · passa presto e controlla in loco",
+    "url": "https://www.facebook.com/p/The-Hi-B-Bar-Cork-100063534417859/"
   }
 ]

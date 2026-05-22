@@ -78,5 +78,75 @@
     "note": "Fine dining",
     "hours": "Mar-Ven 16:00–21:30 · Sab 15:00–22:00",
     "url": "https://greenesrestaurant.com/"
+  },
+  {
+    "id": "food-marketlane",
+    "category": "food",
+    "title": "Market Lane",
+    "desc": "Ristorante centrale molto affidabile per gruppi: cucina irlandese moderna, ingredienti locali e menu ampio senza diventare troppo formale.",
+    "icon": "🍲",
+    "note": "Locale & centrale",
+    "hours": "Tutti i giorni pranzo e cena · orari aggiornati sul sito",
+    "url": "https://www.marketlane.ie/"
+  },
+  {
+    "id": "food-libertygrill",
+    "category": "food",
+    "title": "Liberty Grill",
+    "desc": "Classico di Washington Street per brunch, burger, piatti di pesce e opzioni vegetariane. Ottimo quando serve un posto semplice ma curato.",
+    "icon": "🍳",
+    "note": "Brunch & dinner",
+    "hours": "Colazione/pranzo in settimana · cena Mar-Sab · controlla disponibilità online",
+    "url": "https://libertygrill.ie/"
+  },
+  {
+    "id": "food-goldie",
+    "category": "food",
+    "title": "Goldie",
+    "desc": "Piccolo ristorante di pesce premiato, con menu creativo e prodotti freschi. Perfetto per una cena speciale: meglio prenotare.",
+    "icon": "🦪",
+    "note": "Seafood",
+    "hours": "Mer-Sab 17:00–22:00",
+    "url": "https://goldie.ie/"
+  },
+  {
+    "id": "food-gooddaydeli",
+    "category": "food",
+    "title": "Good Day Deli",
+    "desc": "Café sostenibile nei giardini di Nano Nagle Place, ideale per brunch, torte e caffè quando vuoi mangiare bene senza lasciare il centro.",
+    "icon": "☕",
+    "note": "Brunch in giardino",
+    "hours": "Mar-Ven 10:00–16:00 · Sab-Dom 09:30–17:00",
+    "url": "https://www.gooddaydeli.ie/"
+  },
+  {
+    "id": "food-izz",
+    "category": "food",
+    "title": "Izz Café",
+    "desc": "Cucina palestinese accogliente su George's Quay: mezze, piatti speziati e dolci profumati. Buona scelta per provare qualcosa di diverso.",
+    "icon": "🫓",
+    "note": "Palestinese",
+    "hours": "Mar-Sab pranzo/cena · chiuso Dom-Lun",
+    "url": "https://izz.ie/"
+  },
+  {
+    "id": "food-sonflour",
+    "category": "food",
+    "title": "Sonflour",
+    "desc": "Italiano vegetariano/vegano su Castle Street, con pasta, pizza e piatti creativi in un ambiente piccolo e curato.",
+    "icon": "🍝",
+    "note": "Veg italiano",
+    "hours": "Mar-Ven 17:00–21:30 · Sab 13:00–21:30",
+    "url": "https://www.sonflour.ie/"
+  },
+  {
+    "id": "food-damirco",
+    "category": "food",
+    "title": "Da Mirco Osteria",
+    "desc": "Osteria italiana autentica vicino al fiume, indicata per una cena più tranquilla con piatti regionali e atmosfera raccolta.",
+    "icon": "🍷",
+    "note": "Osteria italiana",
+    "hours": "Lun-Gio 17:30–23:00 · Ven 17:00–23:30 · Sab 16:30–23:30",
+    "url": "https://www.damirco.ie/"
   }
 ]
