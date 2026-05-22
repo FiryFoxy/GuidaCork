@@ -301,6 +301,70 @@ h1, h2, h3, .serif-font {
 .program-admin-panel-title { font-size: 0.75rem; font-weight: 600; color: #588157; margin: 0; }
 .program-admin-form .field-label { margin-top: 0.6rem; }
 
+.pwa-install {
+    position: fixed;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    left: max(1rem, env(safe-area-inset-left));
+    right: max(1rem, env(safe-area-inset-right));
+    z-index: 9998;
+    max-width: 22rem;
+    margin: 0 auto;
+    padding: 1rem 1.1rem;
+    background: #fff;
+    color: #333;
+    border: 1px solid #A3B18A;
+    border-radius: 1rem;
+    box-shadow: 0 12px 32px rgba(52, 78, 65, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+@media (min-width: 640px) {
+    .pwa-install {
+        left: auto;
+        right: max(1.5rem, env(safe-area-inset-right));
+        margin: 0;
+    }
+}
+.pwa-install__title {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #344E41;
+    margin: 0 0 0.25rem;
+}
+.pwa-install__text {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: #4b5563;
+    margin: 0;
+}
+.pwa-install__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.pwa-install__btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+}
+.pwa-install__btn--primary {
+    background: #588157;
+    color: #FAF8F5;
+}
+.pwa-install__btn--primary:hover { background: #344E41; }
+.pwa-install__btn--ghost {
+    background: transparent;
+    color: #588157;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 #toast {
     position: fixed;
     bottom: calc(1.5rem + env(safe-area-inset-bottom));

@@ -11,6 +11,18 @@ Guida interattiva per il soggiorno Erasmus a Cork (**11 luglio – 12 agosto 202
 - Accesso admin riservato alla gestione del programma ufficiale
 - Grafico budget mensile (Chart.js)
 - Link verificati ai siti ufficiali (Cork City Council, Discover Ireland, ecc.)
+- **Installabile come app** su iPhone, iPad e Android (schermo intero, icona sulla Home)
+
+## Installare come app (PWA)
+
+Dopo il deploy su **HTTPS** (es. GitHub Pages):
+
+| Dispositivo | Come installare |
+|-------------|-----------------|
+| **Android (Chrome)** | Apri il sito → banner «Installa» oppure menu ⋮ → *Installa app* / *Aggiungi a schermata Home* |
+| **iPhone / iPad (Safari)** | Condividi → *Aggiungi a Home* (icona ☘️) |
+
+La guida si apre a schermo intero e resta disponibile offline per contenuti già visitati (cache del service worker).
 
 ## Anteprima locale
 
@@ -44,6 +56,9 @@ Poi apri `http://localhost:3000` (o la porta indicata).
 ```
 index.html              # App principale (carica i JSON all'avvio)
 assets/main.css         # Stili custom (componenti, header, planner, meteo…)
+assets/site.webmanifest # Manifest PWA (nome, colori, icone)
+sw.js                   # Service worker (cache offline)
+pwa.js                  # Registrazione SW + suggerimento installazione
 planner.js              # Logica planner + preferiti (localStorage)
 planner-ui.js           # Interfaccia planner (agenda, calendario, mini-mappa)
 supabase-client.js      # Connessione Supabase per utenti/proposte/voti

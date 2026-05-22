@@ -1,18 +1,35 @@
 {
-  "name": "Erasmus a Cork",
+  "name": "Erasmus a Cork — Guida interattiva",
   "short_name": "Cork Erasmus",
-  "description": "Guida interattiva per il soggiorno Erasmus a Cork",
-  "start_url": "./",
+  "description": "Guida interattiva per il soggiorno Erasmus a Cork: luoghi, mappe, meteo e planner.",
+  "id": "../",
+  "start_url": "../",
+  "scope": "../",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
   "background_color": "#344E41",
   "theme_color": "#344E41",
   "lang": "it",
+  "categories": ["travel", "education"],
   "icons": [
     {
-      "src": "logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
