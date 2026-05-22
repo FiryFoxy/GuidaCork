@@ -7,6 +7,7 @@ Guida interattiva per il soggiorno Erasmus a Cork (**11 luglio – 12 agosto 202
 - Schede per cultura, nightlife, shopping e gite fuori porta
 - Ricerca e filtro **preferiti** per ogni sezione
 - **Planner uscite** con date nel periodo Erasmus, export/import JSON
+- **Planning di gruppo** con utenti invitati, voti aggregati e approvazione admin
 - Grafico budget mensile (Chart.js)
 - Link verificati ai siti ufficiali (Cork City Council, Discover Ireland, ecc.)
 
@@ -43,10 +44,13 @@ Poi apri `http://localhost:3000` (o la porta indicata).
 index.html              # App principale (carica i JSON all'avvio)
 planner.js              # Logica planner + preferiti (localStorage)
 planner-ui.js           # Interfaccia planner (agenda, calendario, mini-mappa)
+supabase-client.js      # Connessione Supabase per utenti/proposte/voti
+group-planning-ui.js    # UI planning di gruppo
 map.js                  # Mappa Leaflet + filtri categoria
 weather.js              # Previsioni Open-Meteo + consigli stagione
 data/
   config.json           # Schede navigazione, date Erasmus, elenco file luoghi
+  supabase-config.json  # Project URL e anon key pubblica Supabase
   coordinates.json      # Lat/lng per la mappa (chiave = id luogo)
   places/
     culture.json        # Musei, teatri…
@@ -78,7 +82,38 @@ Campi utili per le gite: `transport`, `time`, `cost`. Salva e ricarica la pagina
 
 Per cambiare le date del planner, modifica `erasmus` in `data/config.json`.
 
+## Planning di gruppo con Supabase
+
+Il sito resta statico, ma il planning condiviso usa Supabase per login, inviti, proposte, voti e approvazione finale.
+
+1. Apri Supabase → SQL editor.
+2. Esegui tutto il file `database/supabase-schema.sql`.
+3. In Supabase → Project Settings → API copia la publishable key pubblica.
+4. Incollala in `data/supabase-config.json` nel campo `anonKey`.
+5. Crea il primo admin dal database dopo il primo accesso, oppure inserisci manualmente un invito admin nella tabella `invites`.
+
+Esempio per pre-invitare un admin dal SQL editor:
+
+```sql
+insert into public.invites (email, role)
+values ('admin@email.it', 'admin');
+```
+
+Se preferisci accesso con password, invita prima l'email: al primo accesso il sito crea l'account Supabase solo per quell'email invitata. Il magic link resta disponibile come alternativa.
+
+Se creando una proposta compare l'errore `new row violates row-level security policy for table "proposal_versions"`, esegui in SQL Editor il file `database/patch-proposal-versions-rls.sql`.
+
+Regole implementate:
+
+- Solo chi ha un invito attivo ottiene un profilo `active`.
+- I voti sono visibili nel sito solo come conteggi aggregati.
+- Ogni modifica importante a una proposta crea una nuova versione.
+- Dopo una modifica, i voti precedenti restano nello storico e gli utenti devono votare la versione corrente.
+- Solo gli admin possono approvare il planning finale.
+- Sono consentiti al massimo 3 admin attivi o invitati.
+
 ## Note
 
-- I dati del planner restano nel browser (`localStorage`).
+- I dati del planner personale restano nel browser (`localStorage`).
+- La password del database non deve essere messa nei file pubblici del sito.
 - Alcuni siti (Facebook, Discover Ireland) possono bloccare richieste automatiche ma funzionano nel browser.

@@ -24,7 +24,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="planner.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="group-planning-ui.js"></script>
     <script src="map.js"></script>
     <script src="planner-ui.js"></script>
     <script src="weather.js"></script>
@@ -266,6 +269,27 @@
         .cal-cell-n { font-size: 0.55rem; margin-top: 0.2rem; font-weight: 600; }
 
         .empty-state { text-align: center; padding: 2.5rem 1rem; background: #fff; border-radius: 1rem; border: 1px dashed #A3B18A; color: #588157; }
+
+        .group-planning-shell { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #E9EDC9; }
+        .group-panel { background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 1rem; box-shadow: 0 1px 3px rgba(52,78,65,.06); }
+        .group-panel-title { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 700; color: #344E41; }
+        .group-userbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1rem; }
+        .group-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+        .group-kpi { background: #FAF8F5; border: 1px solid #E9EDC9; border-radius: 0.75rem; padding: 0.65rem; text-align: center; }
+        .group-kpi strong { display: block; font-family: 'Lora', serif; font-size: 1.35rem; color: #344E41; line-height: 1; }
+        .group-kpi span { font-size: 0.65rem; text-transform: uppercase; color: #588157; font-weight: 700; }
+        .proposal-card { background: #fff; border: 1px solid #E9EDC9; border-radius: 1rem; padding: 1rem; }
+        .proposal-card--approved { border-color: #588157; box-shadow: 0 0 0 2px rgba(88,129,87,.16); }
+        .proposal-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.45rem; color: #555; font-size: 0.75rem; }
+        .proposal-badge { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.2rem 0.5rem; border-radius: 999px; background: #E9EDC9; color: #344E41; font-weight: 700; font-size: 0.68rem; }
+        .vote-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-top: 0.8rem; }
+        .vote-btn { border: 1px solid #E9EDC9; background: #FAF8F5; border-radius: 0.7rem; padding: 0.5rem; font-size: 0.78rem; font-weight: 700; color: #344E41; cursor: pointer; }
+        .vote-btn:hover, .vote-btn--active { background: #344E41; color: #fff; border-color: #344E41; }
+        .vote-counts { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+        .vote-count { flex: 1; min-width: 4.25rem; padding: 0.4rem 0.5rem; border-radius: 0.65rem; background: #FAF8F5; text-align: center; font-size: 0.75rem; color: #555; }
+        .vote-count strong { color: #344E41; font-size: 0.95rem; }
+        .proposal-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+        .group-empty { background: #FAF8F5; border: 1px dashed #A3B18A; border-radius: 1rem; padding: 1.25rem; text-align: center; color: #588157; }
 
         #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(120%); background: #344E41; color: #FAF8F5; padding: 0.75rem 1.25rem; border-radius: 999px; font-size: 0.875rem; font-weight: 600; z-index: 9999; box-shadow: 0 8px 24px rgba(0,0,0,.15); transition: transform 0.3s ease; pointer-events: none; }
         #toast.toast--show { transform: translateX(-50%) translateY(0); }
