@@ -1,6 +1,6 @@
 # ☘️ Guida Cork — Erasmus 2026
 
-Guida interattiva per il soggiorno Erasmus a Cork (**11 luglio – 12 agosto 2026**): musei, pub, mercati, gite e planner uscite.
+Guida interattiva per il soggiorno Erasmus a Cork (**10 luglio – 13 agosto 2026**): musei, pub, mercati, gite e planner uscite.
 
 ## Funzionalità
 
