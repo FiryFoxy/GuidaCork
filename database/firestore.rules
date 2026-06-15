@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    function isLoggedIn() {
+      return request.auth != null;
+    }
+    
+    function getProfile() {
+      let profileRef = /databases/$(database)/documents/profiles/$(request.auth.uid);
+      return exists(profileRef) ? get(profileRef).data : null;
+    }
+    
+    function isAdmin() {
+      let p = getProfile();
+      return isLoggedIn() && p != null && p.role == 'admin' && p.status == 'active';
+    }
+    
+    function isActiveMember() {
+      let p = getProfile();
+      return isLoggedIn() && p != null && p.status == 'active';
+    }
+
+    match /profiles/{userId} {
+      // Leggibile dal proprietario o dagli admin
+      allow read: if isLoggedIn() && (request.auth.uid == userId || isAdmin());
+      
+      // Modificabile dal proprietario (non può cambiare role o status) o dagli admin
+      allow update: if isLoggedIn() && (
+        isAdmin() || 
+        (request.auth.uid == userId && 
+         request.resource.data.role == resource.data.role && 
+         request.resource.data.status == resource.data.status)
+      );
+      
+      // Creabile al primo login
+      allow create: if isLoggedIn() && request.auth.uid == userId; 
+    }
+
+    match /invites/{inviteId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /planning_proposals/{proposalId} {
+      allow read: if resource.data.status == 'approved' || isActiveMember() || isAdmin();
+      allow create: if isActiveMember() && request.resource.data.created_by == request.auth.uid;
+      allow update: if isActiveMember() && (resource.data.created_by == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /votes/{voteId} {
+      allow read: if isLoggedIn() && resource.data.user_id == request.auth.uid;
+      allow create, update: if isActiveMember() && request.resource.data.user_id == request.auth.uid;
+    }
+
+    match /approved_plannings/{approvedId} {
+      allow read: if true; // Pubblico per il sito
+      allow write: if isAdmin();
+    }
+  }
+}
